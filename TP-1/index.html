@@ -1,0 +1,2224 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Travaux pratiques sur les tests unitaires, CI/CD et déploiement">
+      
+      
+        <meta name="author" content="UMONS - Faculté des Sciences">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../TP-2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>TP 1 - EDL - Expertises digitale et logicielle</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tp-1-tests-unitaires-backend-frontend" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="EDL - Expertises digitale et logicielle" class="md-header__button md-logo" aria-label="EDL - Expertises digitale et logicielle" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EDL - Expertises digitale et logicielle
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TP 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/umons-ig/edl-starter" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umons-ig/edl-starter
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TP 1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../TP-2/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TP 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../TP-3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TP 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="EDL - Expertises digitale et logicielle" class="md-nav__button md-logo" aria-label="EDL - Expertises digitale et logicielle" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    EDL - Expertises digitale et logicielle
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/umons-ig/edl-starter" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umons-ig/edl-starter
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-installation-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 : Installation &amp; Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1 : Installation &amp; Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-11-forker-le-depot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 1.1 : Forker le Dépôt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-12-installer-les-dependances-python-2-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 1.2 : Installer les Dépendances Python (2 Options)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-explorer-lapplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 : Explorer l'Application
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2 : Explorer l&#39;Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-21-lancer-le-serveur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2.1 : Lancer le Serveur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-22-tester-dans-le-navigateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2.2 : Tester dans le Navigateur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-23-tester-avec-swagger-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2.3 : Tester avec Swagger UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-24-explorer-le-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2.4 : Explorer le Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-comprendre-les-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 : Comprendre les Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3 : Comprendre les Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-31-explorer-les-fichiers-de-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3.1 : Explorer les Fichiers de Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-32-quest-ce-quune-fixture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3.2 : Qu'est-ce qu'une Fixture ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-33-lancer-les-tests-existants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3.3 : Lancer les Tests Existants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-34-comprendre-un-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3.4 : Comprendre un Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-implementer-les-fonctions-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 : Implémenter les Fonctions Backend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 4 : Implémenter les Fonctions Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercice-1-implementer-delete_task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 1 : Implémenter delete_task()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-2-implementer-update_task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 2 : Implémenter update_task()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-3-ecrire-un-test-de-suppression-inexistante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 3 : Écrire un Test de Suppression Inexistante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-4-ecrire-un-test-de-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 4 : Écrire un Test de Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-5-ecrire-un-test-de-filtrage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 5 : Écrire un Test de Filtrage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-46-lancer-tous-les-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 4.6 : Lancer TOUS les Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-couverture-de-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5 : Couverture de Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 5 : Couverture de Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-51-lancer-les-tests-avec-couverture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 5.1 : Lancer les Tests avec Couverture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-52-generer-un-rapport-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 5.2 : Générer un Rapport HTML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-6-tests-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6 : Tests Frontend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 6 : Tests Frontend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-61-comprendre-le-frontend-et-pourquoi-tester" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.1 : Comprendre le Frontend et Pourquoi Tester
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 6.1 : Comprendre le Frontend et Pourquoi Tester">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-tester-le-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🤔 Pourquoi Tester le Frontend ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-quon-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Qu'est-ce qu'on Teste ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-concept-de-mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎭 Le Concept de Mocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decorticage-ligne-par-ligne-du-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔬 Décorticage Ligne par Ligne du Mock
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exemples-de-mocks-pour-differents-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎨 Exemples de Mocks pour Différents Cas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#questions-frequentes-sur-le-mocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❓ Questions Fréquentes sur le Mocking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recapitulatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Récapitulatif
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-62-installer-les-dependances-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.2 : Installer les Dépendances Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-63-lancer-les-tests-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.3 : Lancer les Tests Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-64-analyser-les-tests-en-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.4 : Analyser les Tests en Détail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 6.4 : Analyser les Tests en Détail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#explication-detaillee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 Explication Détaillée
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparaison-backend-vs-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Comparaison Backend vs Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-5-tests-expliques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Les 5 Tests Expliqués
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-65-couverture-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.5 : Couverture Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-66-comprendre-un-test-existant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.6 : Comprendre un Test Existant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-6-ecrire-un-test-frontend-10-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 6 : Écrire un Test Frontend (10 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-7-ecrire-un-test-update-frontend-10-min" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 7 : Écrire un Test UPDATE Frontend (10 min)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-67-verifier-la-couverture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.7 : Vérifier la Couverture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-68-lancer-lapplication-complete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 6.8 : Lancer l'Application Complète
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercices-bonus-java-avec-junit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎁 Exercices Bonus : Java avec JUnit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎁 Exercices Bonus : Java avec JUnit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequis-installer-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prérequis : Installer Java
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-1-calculs-geometriques-composition-de-fonctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 1 : Calculs Géométriques (Composition de Fonctions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercice-2-money-addition-avec-validation-de-devises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 2 : Money - Addition avec Validation de Devises
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprendre-junit-4-les-bases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Comprendre JUnit 4 - Les Bases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TP-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tp-1-tests-unitaires-backend-frontend">🎓 TP 1 : Tests Unitaires Backend &amp; Frontend<a class="headerlink" href="#tp-1-tests-unitaires-backend-frontend" title="Permanent link">&para;</a></h1>
+<p><strong>Objectif :</strong> Apprendre les tests unitaires avec Python (pytest) et TypeScript (Vitest)</p>
+<hr />
+<h2 id="phase-1-installation-configuration">Phase 1 : Installation &amp; Configuration<a class="headerlink" href="#phase-1-installation-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="etape-11-forker-le-depot">Étape 1.1 : Forker le Dépôt<a class="headerlink" href="#etape-11-forker-le-depot" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Allez sur <code>https://github.com/umons-ig/edl-starter</code></li>
+<li>Cliquez sur <strong>"Fork"</strong></li>
+</ol>
+<p><img alt="Fork Button" src="../img/fork.png" /></p>
+<ol>
+<li>Clonez votre fork :</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/VOTRE_NOM/edl-starter
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>edl-starter
+</code></pre></div>
+<h3 id="etape-12-installer-les-dependances-python-2-options">Étape 1.2 : Installer les Dépendances Python (2 Options)<a class="headerlink" href="#etape-12-installer-les-dependances-python-2-options" title="Permanent link">&para;</a></h3>
+<p><strong>Option A : Avec UV (Recommandé - Plus Rapide) ⚡</strong></p>
+<p>UV est un gestionnaire de paquets Python moderne et ultra-rapide.</p>
+<p><strong>Installation UV :</strong></p>
+<p><em>macOS/Linux :</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</code></pre></div>
+<p><em>Windows :</em></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">powershell</span> <span class="n">-c</span> <span class="s2">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span>
+</code></pre></div>
+<p><strong>Installer les dépendances :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>uv<span class="w"> </span>venv
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># Windows: .venv\Scripts\activate</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>uv<span class="w"> </span>sync
+</code></pre></div>
+<hr />
+<p><strong>Option B : Avec pip (Classique) 🐍</strong></p>
+<p>Si vous préférez pip ou avez déjà Python installé :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># Windows: .venv\Scripts\activate</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<hr />
+<p><strong>Dans le reste de l'atelier :</strong></p>
+<ul>
+<li>Si vous utilisez <strong>UV</strong> : <code>uv run pytest</code></li>
+<li>Si vous utilisez <strong>pip</strong> : <code>pytest</code></li>
+</ul>
+<hr />
+<h2 id="phase-2-explorer-lapplication">Phase 2 : Explorer l'Application<a class="headerlink" href="#phase-2-explorer-lapplication" title="Permanent link">&para;</a></h2>
+<h3 id="etape-21-lancer-le-serveur">Étape 2.1 : Lancer le Serveur<a class="headerlink" href="#etape-21-lancer-le-serveur" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>run<span class="w"> </span>uvicorn<span class="w"> </span>src.app:app<span class="w"> </span>--reload
+</code></pre></div>
+<h3 id="etape-22-tester-dans-le-navigateur">Étape 2.2 : Tester dans le Navigateur<a class="headerlink" href="#etape-22-tester-dans-le-navigateur" title="Permanent link">&para;</a></h3>
+<p>Visitez :</p>
+<ul>
+<li><strong>API :</strong> <a href="http://localhost:8000">http://localhost:8000</a></li>
+<li><strong>Documentation interactive :</strong> <a href="http://localhost:8000/docs">http://localhost:8000/docs</a></li>
+<li><strong>Santé :</strong> <a href="http://localhost:8000/health">http://localhost:8000/health</a></li>
+</ul>
+<h3 id="etape-23-tester-avec-swagger-ui">Étape 2.3 : Tester avec Swagger UI<a class="headerlink" href="#etape-23-tester-avec-swagger-ui" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Allez sur <a href="http://localhost:8000/docs">http://localhost:8000/docs</a></li>
+<li>Cliquez sur <strong>POST /tasks</strong></li>
+<li>Cliquez sur <strong>"Try it out"</strong></li>
+<li>Entrez :</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ma première tâche&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Apprendre FastAPI&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Cliquez sur <strong>"Execute"</strong></li>
+<li>Vous devriez voir un code <code>201 Created</code></li>
+</ol>
+<h3 id="etape-24-explorer-le-code">Étape 2.4 : Explorer le Code<a class="headerlink" href="#etape-24-explorer-le-code" title="Permanent link">&para;</a></h3>
+<p>Ouvrez <code>backend/src/app.py</code> dans votre éditeur :</p>
+<ul>
+<li><strong>Lignes 27-36 :</strong> Énumérations (TaskStatus, TaskPriority)</li>
+<li><strong>Lignes 39-68 :</strong> Modèles Pydantic</li>
+<li><strong>Lignes 76-77 :</strong> Stockage en mémoire (dictionnaire simple)</li>
+<li><strong>Lignes 180-205 :</strong> Endpoint pour créer une tâche</li>
+<li><strong>Lignes 144-160 :</strong> Endpoint pour lister les tâches</li>
+</ul>
+<p><strong>Important :</strong> Ce backend utilise un <strong>stockage en mémoire</strong> (un simple dictionnaire Python) pour les TP 1 &amp; 2. Vous utiliserez PostgreSQL dans le TP 3.</p>
+<hr />
+<h2 id="phase-3-comprendre-les-tests">Phase 3 : Comprendre les Tests<a class="headerlink" href="#phase-3-comprendre-les-tests" title="Permanent link">&para;</a></h2>
+<h3 id="etape-31-explorer-les-fichiers-de-test">Étape 3.1 : Explorer les Fichiers de Test<a class="headerlink" href="#etape-31-explorer-les-fichiers-de-test" title="Permanent link">&para;</a></h3>
+<p>Ouvrez ces fichiers :</p>
+<ul>
+<li><code>backend/tests/conftest.py</code> → Fixtures de test</li>
+<li><code>backend/tests/test_api.py</code> → Tests</li>
+</ul>
+<h3 id="etape-32-quest-ce-quune-fixture">Étape 3.2 : Qu'est-ce qu'une Fixture ?<a class="headerlink" href="#etape-32-quest-ce-quune-fixture" title="Permanent link">&para;</a></h3>
+<p>Dans <code>conftest.py</code>, regardez :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">clean_tasks</span><span class="p">():</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Nettoie les tâches avant et après chaque test&quot;&quot;&quot;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">clear_tasks</span><span class="p">()</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">yield</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">clear_tasks</span><span class="p">()</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">client</span><span class="p">():</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Fournit un client HTTP de test&quot;&quot;&quot;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="k">with</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">app</span><span class="p">)</span> <span class="k">as</span> <span class="n">test_client</span><span class="p">:</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>        <span class="k">yield</span> <span class="n">test_client</span>
+</code></pre></div>
+<p><strong>Pourquoi c'est utile ?</strong></p>
+<ul>
+<li><code>clean_tasks</code> : Nettoie automatiquement le stockage en mémoire avant chaque test</li>
+<li><code>client</code> : Vous n'avez pas à créer un client dans chaque test</li>
+<li>pytest les injecte automatiquement quand vous écrivez <code>def test_xxx(client):</code></li>
+</ul>
+<h3 id="etape-33-lancer-les-tests-existants">Étape 3.3 : Lancer les Tests Existants<a class="headerlink" href="#etape-33-lancer-les-tests-existants" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v
+</code></pre></div>
+<p>Vous devriez voir :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tests/test_api.py::test_root_endpoint PASSED
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>tests/test_api.py::test_health_check PASSED
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>tests/test_api.py::test_create_task PASSED
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>tests/test_api.py::test_list_tasks PASSED
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>tests/test_api.py::test_get_task_by_id PASSED
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>... (19 tests au total)
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>========== 19 passed in 0.45s ==========
+</code></pre></div>
+<h3 id="etape-34-comprendre-un-test">Étape 3.4 : Comprendre un Test<a class="headerlink" href="#etape-34-comprendre-un-test" title="Permanent link">&para;</a></h3>
+<p>Regardez <code>test_create_task</code> dans <code>test_api.py</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_create_task</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="c1"># ARRANGE : Préparer les données</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">new_task</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Acheter des courses&quot;</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Lait, œufs, pain&quot;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="p">}</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="c1"># ACT : Faire la requête</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">new_task</span><span class="p">)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    <span class="c1"># ASSERT : Vérifier</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Acheter des courses&quot;</span>
+</code></pre></div>
+<p><strong>Pattern Arrange-Act-Assert :</strong></p>
+<ol>
+<li><strong>Arrange</strong> → Préparer</li>
+<li><strong>Act</strong> → Agir</li>
+<li><strong>Assert</strong> → Vérifier</li>
+</ol>
+<hr />
+<h2 id="phase-4-implementer-les-fonctions-backend">Phase 4 : Implémenter les Fonctions Backend<a class="headerlink" href="#phase-4-implementer-les-fonctions-backend" title="Permanent link">&para;</a></h2>
+<h3 id="exercice-1-implementer-delete_task">✍️ Exercice 1 : Implémenter <code>delete_task()</code><a class="headerlink" href="#exercice-1-implementer-delete_task" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Compléter la fonction <code>delete_task()</code> dans <code>backend/src/app.py</code></p>
+<p>Ouvrez <code>backend/src/app.py</code> et trouvez la fonction <code>delete_task()</code> (ligne ~240).</p>
+<p><strong>Les tests existent déjà !</strong> Regardez dans <code>test_api.py</code> :</p>
+<ul>
+<li><code>test_delete_task</code> : Supprime une tâche et vérifie qu'elle a disparu</li>
+<li><code>test_delete_nonexistent_task</code> : Vérifie le 404</li>
+</ul>
+<p><strong>Votre mission :</strong></p>
+<p>Implémentez les 3 étapes décrites dans le TODO :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nd">@app</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;/tasks/</span><span class="si">{task_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">204</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_task</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="c1"># TODO: Votre code ici</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="c1"># 1. Vérifier que la tâche existe</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="c1"># 2. La supprimer de tasks_db</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="c1"># 3. Retourner None</span>
+</code></pre></div>
+<p><strong>Vérifier votre code :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_delete_task<span class="w"> </span>-v
+</code></pre></div>
+<p>✅ Si le test passe → <strong>Bravo !</strong></p>
+<p>❌ Si le test échoue → Lisez l'erreur et corrigez</p>
+<hr />
+<h3 id="exercice-2-implementer-update_task">✍️ Exercice 2 : Implémenter <code>update_task()</code><a class="headerlink" href="#exercice-2-implementer-update_task" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Compléter la fonction <code>update_task()</code> dans <code>backend/src/app.py</code></p>
+<p>Trouvez la fonction <code>update_task()</code> (ligne ~207).</p>
+<p><strong>Les tests existent déjà !</strong> Regardez :</p>
+<ul>
+<li><code>test_update_task</code> : Change le titre d'une tâche</li>
+<li><code>test_update_task_status</code> : Change le statut</li>
+<li><code>test_update_nonexistent_task</code> : Vérifie le 404</li>
+</ul>
+<p><strong>Votre mission :</strong></p>
+<p>Implémentez les 7 étapes décrites dans le TODO.</p>
+<p><strong>Indices :</strong></p>
+<ol>
+<li>C'est similaire à <code>create_task</code> mais avec une tâche existante</li>
+<li>Utilisez <code>updates.model_dump(exclude_unset=True)</code> pour obtenir les champs fournis</li>
+<li>Utilisez <code>update_data.get("field", existing_task.field)</code> pour garder les anciennes valeurs si non mises à jour</li>
+</ol>
+<p><strong>Vérifier votre code :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_update_task<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="exercice-3-ecrire-un-test-de-suppression-inexistante">✍️ Exercice 3 : Écrire un Test de Suppression Inexistante<a class="headerlink" href="#exercice-3-ecrire-un-test-de-suppression-inexistante" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Tester qu'on ne peut pas supprimer une tâche qui n'existe pas</p>
+<p>Ouvrez <code>backend/tests/test_api.py</code> et trouvez la section DELETE TASK TESTS.</p>
+<p>Ajoutez ce test après <code>test_delete_task</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_delete_nonexistent_task_returns_404</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Deleting a task that doesn&#39;t exist should return 404.&quot;&quot;&quot;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="c1"># TODO: Votre code ici</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="c1"># 1. Essayer de supprimer une tâche avec un ID qui n&#39;existe pas (ex: 9999)</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="c1"># 2. Vérifier que ça retourne 404</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="c1"># 3. Vérifier le message d&#39;erreur contient &quot;not found&quot;</span>
+</code></pre></div>
+<p><strong>Vérifier :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_delete_nonexistent_task_returns_404<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="exercice-4-ecrire-un-test-de-validation">✍️ Exercice 4 : Écrire un Test de Validation<a class="headerlink" href="#exercice-4-ecrire-un-test-de-validation" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Tester qu'on ne peut pas mettre à jour une tâche avec une priorité invalide</p>
+<p>Ouvrez <code>backend/tests/test_api.py</code> et trouvez la fonction <code>test_update_task_with_invalid_priority</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_update_task_with_invalid_priority</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Updating a task with an invalid priority should fail.&quot;&quot;&quot;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="c1"># TODO: Votre code ici</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="c1"># 1. Créer une tâche valide</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="c1"># 2. Essayer de la mettre à jour avec priority=&quot;urgent&quot; (invalide)</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="c1"># 3. Vérifier que ça retourne 422 (Erreur de Validation)</span>
+</code></pre></div>
+<p><strong>Rappel :</strong> Les priorités valides sont <code>"low"</code>, <code>"medium"</code>, <code>"high"</code> (voir <code>TaskPriority</code> dans <code>app.py</code>)</p>
+<p><strong>Vérifier :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_update_task_with_invalid_priority<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="exercice-5-ecrire-un-test-de-filtrage">✍️ Exercice 5 : Écrire un Test de Filtrage<a class="headerlink" href="#exercice-5-ecrire-un-test-de-filtrage" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Tester le filtrage avec plusieurs critères</p>
+<p>Ajoutez ce test dans la section FILTER TASKS TESTS :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_filter_by_multiple_criteria</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Filtering by status AND priority should work.&quot;&quot;&quot;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="c1"># TODO: Votre code ici</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="c1"># 1. Créer 3 tâches avec différents status et priority</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="c1"># 2. Filtrer avec GET /tasks?status=todo&amp;priority=high</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="c1"># 3. Vérifier qu&#39;on reçoit seulement les bonnes tâches</span>
+</code></pre></div>
+<p><strong>Vérifier :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_filter_by_multiple_criteria<span class="w"> </span>-v
+</code></pre></div>
+<hr />
+<h3 id="etape-46-lancer-tous-les-tests">Étape 4.6 : Lancer TOUS les Tests<a class="headerlink" href="#etape-46-lancer-tous-les-tests" title="Permanent link">&para;</a></h3>
+<p>Une fois que vous avez terminé les 5 exercices, lancez tous les tests :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v
+</code></pre></div>
+<p><strong>Résultat attendu :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>tests/test_api.py::test_root_endpoint PASSED
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>tests/test_api.py::test_health_check PASSED
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>tests/test_api.py::test_create_simple_task PASSED
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>...
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>tests/test_api.py::test_delete_task PASSED
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>tests/test_api.py::test_update_task PASSED
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>tests/test_api.py::test_delete_nonexistent_task_returns_404 PASSED
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>tests/test_api.py::test_update_task_with_empty_title PASSED
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>tests/test_api.py::test_filter_by_multiple_criteria PASSED
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>...
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>========== 22+ passed in 0.5s ==========
+</code></pre></div>
+<p>🎉 <strong>Tous les tests passent ?</strong> Vous avez réussi !</p>
+<hr />
+<h2 id="phase-5-couverture-de-code">Phase 5 : Couverture de Code<a class="headerlink" href="#phase-5-couverture-de-code" title="Permanent link">&para;</a></h2>
+<h3 id="etape-51-lancer-les-tests-avec-couverture">Étape 5.1 : Lancer les Tests avec Couverture<a class="headerlink" href="#etape-51-lancer-les-tests-avec-couverture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov
+</code></pre></div>
+<p>Résultat :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>---------- coverage: platform darwin, python 3.12.7 -----------
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Name                Stmts   Miss  Cover
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>---------------------------------------
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>src/app.py            156      6    96%
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>---------------------------------------
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>TOTAL                 156      6    96%
+</code></pre></div>
+<p><img alt="Backend Coverage Report" src="../img/backend-coverage.png" /></p>
+<h3 id="etape-52-generer-un-rapport-html">Étape 5.2 : Générer un Rapport HTML<a class="headerlink" href="#etape-52-generer-un-rapport-html" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="w"> </span>--cov-report<span class="o">=</span>html
+</code></pre></div>
+<p>Ouvrir le rapport :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>open<span class="w"> </span>htmlcov/index.html<span class="w">  </span><span class="c1"># macOS</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>start<span class="w"> </span>htmlcov/index.html<span class="w">  </span><span class="c1"># Windows</span>
+</code></pre></div>
+<hr />
+<h2 id="phase-6-tests-frontend">Phase 6 : Tests Frontend<a class="headerlink" href="#phase-6-tests-frontend" title="Permanent link">&para;</a></h2>
+<h3 id="etape-61-comprendre-le-frontend-et-pourquoi-tester">Étape 6.1 : Comprendre le Frontend et Pourquoi Tester<a class="headerlink" href="#etape-61-comprendre-le-frontend-et-pourquoi-tester" title="Permanent link">&para;</a></h3>
+<p>Le frontend est une application <strong>React + TypeScript</strong> simple qui communique avec le backend.</p>
+<p><strong>Structure :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>frontend/
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>├── src/
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>│   ├── App.tsx              # Composant principal
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>│   ├── App.css              # Styles simples
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>│   ├── api/
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>│   │   ├── api.ts           # Client API
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>│   │   └── api.test.ts      # Tests API ← ON TESTE ÇA
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>│   └── components/
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>│       ├── SimpleTaskList.tsx
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>│       └── TaskForm.tsx
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>└── package.json
+</code></pre></div>
+<h4 id="pourquoi-tester-le-frontend">🤔 Pourquoi Tester le Frontend ?<a class="headerlink" href="#pourquoi-tester-le-frontend" title="Permanent link">&para;</a></h4>
+<p><strong>1. Vérifier la Communication avec le Backend</strong></p>
+<p>Les tests frontend vérifient que votre code JavaScript/TypeScript communique correctement avec l'API backend :</p>
+<ul>
+<li>✅ Les requêtes HTTP sont-elles correctement formées ? (bonne URL, bonne méthode, bon format)</li>
+<li>✅ Les données sont-elles correctement envoyées ? (body JSON valide)</li>
+<li>✅ Les réponses sont-elles correctement traitées ? (parsing JSON, extraction des données)</li>
+<li>✅ Les erreurs sont-elles gérées ? (404, 500, network errors)</li>
+</ul>
+<p><strong>2. Tester Sans Dépendre du Backend</strong></p>
+<p>Grâce au <strong>mocking</strong>, on peut tester le frontend même si :</p>
+<ul>
+<li>❌ Le backend n'est pas encore développé</li>
+<li>❌ Le backend est en panne</li>
+<li>❌ On n'a pas de connexion Internet</li>
+<li>❌ On veut tester des cas d'erreur difficiles à reproduire</li>
+</ul>
+<p><strong>Exemple :</strong> Comment tester une erreur 500 sans crasher votre vrai backend ? → Avec un mock !</p>
+<p><strong>3. Tests Rapides et Fiables</strong></p>
+<ul>
+<li>⚡ <strong>Rapides</strong> : Pas besoin de lancer un vrai serveur</li>
+<li>🔒 <strong>Isolés</strong> : Pas d'effets de bord entre les tests</li>
+<li>🎯 <strong>Précis</strong> : On teste uniquement la logique frontend</li>
+</ul>
+<h4 id="quest-ce-quon-teste">📦 Qu'est-ce qu'on Teste ?<a class="headerlink" href="#quest-ce-quon-teste" title="Permanent link">&para;</a></h4>
+<p>Dans cet atelier, on teste <strong>uniquement le module API</strong> (<code>api.ts</code>), pas les composants React.</p>
+<p><strong>Pourquoi ne pas tester les composants React ?</strong></p>
+<ul>
+<li>Les tests de composants React nécessitent des outils supplémentaires (React Testing Library)</li>
+<li>C'est plus complexe (gestion du DOM, événements, état)</li>
+<li>Pour le TP 1, on se concentre sur les <strong>concepts de base des tests</strong></li>
+</ul>
+<p><strong>Ce qu'on teste dans <code>api.ts</code> :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fonction</th>
+<th>Ce qu'elle fait</th>
+<th>Ce qu'on vérifie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getTasks()</code></td>
+<td>Récupère la liste des tâches</td>
+<td>Retourne un tableau de tâches</td>
+</tr>
+<tr>
+<td><code>createTask()</code></td>
+<td>Crée une nouvelle tâche</td>
+<td>Envoie les bonnes données en POST</td>
+</tr>
+<tr>
+<td><code>deleteTask()</code></td>
+<td>Supprime une tâche</td>
+<td>Appelle DELETE avec le bon ID</td>
+</tr>
+<tr>
+<td><code>updateTask()</code></td>
+<td>Met à jour une tâche</td>
+<td>Envoie PUT avec les modifications</td>
+</tr>
+</tbody>
+</table>
+<h4 id="le-concept-de-mocking">🎭 Le Concept de Mocking<a class="headerlink" href="#le-concept-de-mocking" title="Permanent link">&para;</a></h4>
+<p><strong>Problème :</strong> Comment tester du code qui appelle une API externe ?</p>
+<p><strong>Solution :</strong> On <strong>simule</strong> (mock) la fonction <code>fetch()</code> pour qu'elle retourne ce qu'on veut !</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1">// Au lieu d&#39;appeler le vrai backend...</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/tasks&#39;</span><span class="p">)</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1">// ...on remplace fetch par une fausse version qui retourne ce qu&#39;on veut</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">    </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Test&#39;</span><span class="w"> </span><span class="p">}])</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">  </span><span class="p">})</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="p">);</span>
+</code></pre></div>
+<p><strong>Avantages :</strong></p>
+<ul>
+<li>✅ Pas besoin du vrai backend</li>
+<li>✅ Contrôle total sur les réponses (succès, erreurs, cas limites)</li>
+<li>✅ Tests ultra-rapides</li>
+</ul>
+<h4 id="decorticage-ligne-par-ligne-du-mock">🔬 Décorticage Ligne par Ligne du Mock<a class="headerlink" href="#decorticage-ligne-par-ligne-du-mock" title="Permanent link">&para;</a></h4>
+<p>Analysons en détail ce code de mocking qui peut sembler complexe au premier abord :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Test Task&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;todo&#39;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="p">]),</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">  </span><span class="p">})</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="p">);</span>
+</code></pre></div>
+<p><strong>Ligne 1 : Remplacer la vraie fonction <code>fetch()</code></strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(...)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Élément</th>
+<th>Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>globalThis</code></td>
+<td>Objet JavaScript global (équivalent de <code>window</code> dans le navigateur)</td>
+</tr>
+<tr>
+<td><code>.fetch</code></td>
+<td>La vraie fonction qui fait les requêtes HTTP</td>
+</tr>
+<tr>
+<td><code>vi.fn(...)</code></td>
+<td>Crée une fonction "espion" (mock) de Vitest</td>
+</tr>
+<tr>
+<td><code>(globalThis as any)</code></td>
+<td>TypeScript : on force le type pour pouvoir modifier fetch</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ce qu'on fait :</strong> On remplace la vraie <code>fetch()</code> par une fausse version qu'on contrôle !</p>
+<p><strong>Ligne 2 : Simuler une Promesse réussie</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({...})</span>
+</code></pre></div>
+<ul>
+<li><code>fetch()</code> retourne toujours une <strong>Promise</strong> (asynchrone)</li>
+<li><code>Promise.resolve()</code> simule une promesse qui <strong>réussit immédiatement</strong></li>
+<li>On pourrait utiliser <code>Promise.reject()</code> pour simuler une erreur réseau</li>
+</ul>
+<p><strong>Ligne 3-7 : Simuler la réponse HTTP</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="p">{</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w">                    </span><span class="c1">// ✅ Statut de la réponse</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([...])</span><span class="w">  </span><span class="c1">// 📦 Les données JSON</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Propriété</th>
+<th>Valeur</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ok</code></td>
+<td><code>true</code></td>
+<td>La requête HTTP a réussi (status 200-299)</td>
+</tr>
+<tr>
+<td><code>ok</code></td>
+<td><code>false</code></td>
+<td>La requête a échoué (status 400-599)</td>
+</tr>
+<tr>
+<td><code>json()</code></td>
+<td>Une fonction qui retourne une Promise</td>
+<td>Simule <code>response.json()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pourquoi <code>json()</code> est une fonction ?</strong></p>
+<p>Le vrai <code>fetch()</code> fonctionne comme ça :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/tasks&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// Étape 1 : Obtenir la réponse</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span><span class="w">      </span><span class="c1">// Étape 2 : Parser le JSON</span>
+</code></pre></div>
+<p>Notre mock doit <strong>imiter exactement ce comportement</strong> !</p>
+<p><strong>Ligne 4-6 : Les données retournées</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="p">[</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Test Task&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;todo&#39;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">]</span>
+</code></pre></div>
+<p>C'est le <strong>tableau de tâches fictif</strong> que notre mock va retourner. On peut mettre ce qu'on veut !</p>
+<h4 id="exemples-de-mocks-pour-differents-cas">🎨 Exemples de Mocks pour Différents Cas<a class="headerlink" href="#exemples-de-mocks-pour-differents-cas" title="Permanent link">&para;</a></h4>
+<p><strong>1️⃣ Mock pour un Succès (200 OK)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">200</span><span class="p">,</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">    </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Ma tâche&#39;</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">  </span><span class="p">})</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="p">);</span>
+</code></pre></div>
+<p><strong>2️⃣ Mock pour une Erreur 404 (Not Found)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">404</span><span class="p">,</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">    </span><span class="nx">statusText</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Not Found&#39;</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="p">})</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="p">);</span>
+</code></pre></div>
+<p><strong>3️⃣ Mock pour une Erreur 500 (Server Error)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">false</span><span class="p">,</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">    </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="kt">500</span><span class="p">,</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">    </span><span class="nx">statusText</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Server Error&#39;</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">  </span><span class="p">})</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="p">);</span>
+</code></pre></div>
+<p><strong>4️⃣ Mock pour une Erreur Réseau (pas de connexion)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="s1">&#39;Network error&#39;</span><span class="p">))</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="p">);</span>
+</code></pre></div>
+<h4 id="questions-frequentes-sur-le-mocking">❓ Questions Fréquentes sur le Mocking<a class="headerlink" href="#questions-frequentes-sur-le-mocking" title="Permanent link">&para;</a></h4>
+<p><strong>Q : Pourquoi <code>(globalThis as any)</code> ?</strong></p>
+<p><strong>R :</strong> TypeScript protège <code>globalThis.fetch</code> contre les modifications. <code>as any</code> dit à TypeScript "Fais-moi confiance, je sais ce que je fais !" C'est normal dans les tests.</p>
+<p><strong>Q : Pourquoi <code>vi.fn()</code> au lieu d'une fonction normale ?</strong></p>
+<p><strong>R :</strong> <code>vi.fn()</code> crée un <strong>spy</strong> (espion). On peut ensuite vérifier :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nx">expect</span><span class="p">(</span><span class="nx">mockFetch</span><span class="p">).</span><span class="nx">toHaveBeenCalledWith</span><span class="p">(</span><span class="s1">&#39;/tasks/1&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;DELETE&#39;</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<p>Avec une fonction normale, on ne pourrait pas faire ça !</p>
+<p><strong>Q : Dois-je mocker <code>fetch()</code> dans chaque test ?</strong></p>
+<p><strong>R :</strong> <strong>OUI !</strong> Chaque test est isolé. Si vous ne mocker pas <code>fetch()</code>, le test essaiera d'appeler le vrai backend et échouera.</p>
+<p><strong>Q : Le mock persiste-t-il entre les tests ?</strong></p>
+<p><strong>R :</strong> Non, Vitest réinitialise les mocks automatiquement entre chaque test. C'est pour garantir l'<strong>isolation</strong> des tests.</p>
+<h4 id="recapitulatif">🎯 Récapitulatif<a class="headerlink" href="#recapitulatif" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mock</strong></td>
+<td>Fausse version d'une fonction qu'on contrôle</td>
+</tr>
+<tr>
+<td><code>globalThis.fetch</code></td>
+<td>La vraie fonction HTTP qu'on remplace</td>
+</tr>
+<tr>
+<td><code>vi.fn()</code></td>
+<td>Crée un mock espion (peut être vérifié)</td>
+</tr>
+<tr>
+<td><code>Promise.resolve()</code></td>
+<td>Simule une promesse qui réussit</td>
+</tr>
+<tr>
+<td><code>ok: true</code></td>
+<td>Simule un succès HTTP (200-299)</td>
+</tr>
+<tr>
+<td><code>json()</code></td>
+<td>Fonction qui retourne les données JSON</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important :</strong> On teste <strong>uniquement l'API</strong> (pas les composants React) pour rester simple.</p>
+<h3 id="etape-62-installer-les-dependances-frontend">Étape 6.2 : Installer les Dépendances Frontend<a class="headerlink" href="#etape-62-installer-les-dependances-frontend" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>npm<span class="w"> </span>install
+</code></pre></div>
+<p>Cela va installer toutes les dépendances définies dans <code>package.json</code>.</p>
+<h3 id="etape-63-lancer-les-tests-frontend">Étape 6.3 : Lancer les Tests Frontend<a class="headerlink" href="#etape-63-lancer-les-tests-frontend" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>Vous devriez voir :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>✓ src/api/api.test.ts (3 tests) 4ms
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>  ✓ fetches tasks from the backend
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>  ✓ creates a new task
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>  ✓ throws error when API fails
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>Test Files  1 passed (1)
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>     Tests  3 passed (3)
+</code></pre></div>
+<h3 id="etape-64-analyser-les-tests-en-detail">Étape 6.4 : Analyser les Tests en Détail<a class="headerlink" href="#etape-64-analyser-les-tests-en-detail" title="Permanent link">&para;</a></h3>
+<p>Ouvrez <code>frontend/src/api/api.test.ts</code> et analysons <strong>ligne par ligne</strong> comment fonctionne un test :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;API Module&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">  </span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;fetches tasks from the backend&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="c1">// ÉTAPE 1 : Mock fetch pour simuler la réponse du backend</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">    </span><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="w">      </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="w">        </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="w">        </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Test Task&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;todo&#39;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="w">        </span><span class="p">]),</span>
+<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="w">      </span><span class="p">})</span>
+<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="w">    </span><span class="p">);</span>
+<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>
+<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="w">    </span><span class="c1">// ÉTAPE 2 : Appeler la fonction à tester</span>
+<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">getTasks</span><span class="p">();</span>
+<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a>
+<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="w">    </span><span class="c1">// ÉTAPE 3 : Vérifier les résultats</span>
+<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">tasks</span><span class="p">).</span><span class="nx">toHaveLength</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a><span class="w">    </span><span class="nx">expect</span><span class="p">(</span><span class="nx">tasks</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">title</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;Test Task&#39;</span><span class="p">);</span>
+<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a><span class="w">  </span><span class="p">});</span>
+<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a><span class="p">});</span>
+</code></pre></div>
+<h4 id="explication-detaillee">🔍 Explication Détaillée<a class="headerlink" href="#explication-detaillee" title="Permanent link">&para;</a></h4>
+<p><strong>ÉTAPE 1 : Pourquoi mocker <code>fetch()</code> ?</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">...)</span>
+</code></pre></div>
+<ul>
+<li><code>globalThis.fetch</code> = la fonction JavaScript qui fait les requêtes HTTP</li>
+<li><code>vi.fn()</code> = remplace fetch par une fausse version (mock) de Vitest</li>
+<li>On contrôle ce qu'elle retourne → <strong>pas d'appel réseau réel</strong></li>
+</ul>
+<p><strong>Ce que le mock retourne :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">  </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w">                    </span><span class="c1">// ✅ Requête réussie (pas d&#39;erreur)</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">  </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">([...])</span><span class="w">  </span><span class="c1">// Les données JSON à retourner</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="p">})</span>
+</code></pre></div>
+<p>C'est exactement ce que le <strong>vrai</strong> <code>fetch()</code> retournerait, mais <strong>sans réseau</strong> !</p>
+<p><strong>ÉTAPE 2 : Appeler la fonction</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">getTasks</span><span class="p">();</span>
+</code></pre></div>
+<ul>
+<li>Appelle la vraie fonction <code>getTasks()</code> de notre API</li>
+<li>Cette fonction utilise <code>fetch()</code> en interne</li>
+<li>Mais <code>fetch()</code> est maintenant notre <strong>mock</strong> → retourne instantanément les données fictives</li>
+</ul>
+<p><strong>ÉTAPE 3 : Vérifier les résultats</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nx">expect</span><span class="p">(</span><span class="nx">tasks</span><span class="p">).</span><span class="nx">toHaveLength</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span><span class="w">       </span><span class="c1">// ✅ On a bien reçu 1 tâche</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="nx">expect</span><span class="p">(</span><span class="nx">tasks</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">title</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;Test Task&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">// ✅ Le titre est correct</span>
+</code></pre></div>
+<h4 id="comparaison-backend-vs-frontend">📊 Comparaison Backend vs Frontend<a class="headerlink" href="#comparaison-backend-vs-frontend" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Tests Backend (pytest)</th>
+<th>Tests Frontend (Vitest)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Framework</strong></td>
+<td>pytest</td>
+<td>Vitest</td>
+</tr>
+<tr>
+<td><strong>Langage</strong></td>
+<td>Python</td>
+<td>TypeScript</td>
+</tr>
+<tr>
+<td><strong>Assertions</strong></td>
+<td><code>assert response.status_code == 200</code></td>
+<td><code>expect(response.ok).toBe(true)</code></td>
+</tr>
+<tr>
+<td><strong>Mocking</strong></td>
+<td>Fixtures (<code>client</code>)</td>
+<td><code>vi.fn()</code></td>
+</tr>
+<tr>
+<td><strong>Asynchrone</strong></td>
+<td>Pas nécessaire (FastAPI le gère)</td>
+<td><code>async/await</code> obligatoire</td>
+</tr>
+<tr>
+<td><strong>Pattern</strong></td>
+<td>Arrange-Act-Assert</td>
+<td>Arrange-Act-Assert (identique!)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La bonne nouvelle :</strong> Les concepts sont <strong>identiques</strong> entre backend et frontend !</p>
+<h4 id="les-5-tests-expliques">🎯 Les 5 Tests Expliqués<a class="headerlink" href="#les-5-tests-expliques" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Objectif</th>
+<th>Ce qu'on vérifie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test 1</strong> : <code>fetches tasks</code></td>
+<td>Récupérer des tâches</td>
+<td>✅ Reçoit un tableau avec les bonnes données</td>
+</tr>
+<tr>
+<td><strong>Test 2</strong> : <code>creates a new task</code></td>
+<td>Créer une tâche</td>
+<td>✅ Envoie POST avec les bonnes données</td>
+</tr>
+<tr>
+<td><strong>Test 3</strong> : <code>throws error when API fails</code></td>
+<td>Gestion d'erreur</td>
+<td>✅ Lève une exception si le backend répond 500</td>
+</tr>
+<tr>
+<td><strong>Test 4</strong> : <code>deletes a task</code></td>
+<td>Supprimer une tâche</td>
+<td>✅ Appelle DELETE avec le bon ID</td>
+</tr>
+<tr>
+<td><strong>Test 5</strong> : <code>updates a task</code></td>
+<td>Mettre à jour une tâche</td>
+<td>✅ Envoie PUT avec les modifications</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pourquoi ces tests sont importants ?</strong></p>
+<ul>
+<li>🐛 <strong>Détecter les bugs</strong> : Si on change l'URL de l'API, les tests échouent</li>
+<li>🔒 <strong>Garantir la qualité</strong> : Les nouvelles fonctionnalités ne cassent pas l'existant</li>
+<li>📖 <strong>Documentation vivante</strong> : Les tests montrent comment utiliser l'API</li>
+</ul>
+<h3 id="etape-65-couverture-frontend">Étape 6.5 : Couverture Frontend<a class="headerlink" href="#etape-65-couverture-frontend" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:coverage
+</code></pre></div>
+<p>Résultat :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>File       | % Stmts | % Branch | % Funcs | % Lines |
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>-----------|---------|----------|---------|---------|
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>api.ts     |   68.42 |    55.55 |      50 |   68.42 |
+</code></pre></div>
+<p><strong>Note :</strong> On teste uniquement l'API (pas les composants React).</p>
+<h3 id="etape-66-comprendre-un-test-existant">Étape 6.6 : Comprendre un Test Existant<a class="headerlink" href="#etape-66-comprendre-un-test-existant" title="Permanent link">&para;</a></h3>
+<p>Avant d'écrire votre test, analysons comment fonctionne le test <code>creates a new task</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;creates a new task&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">  </span><span class="c1">// 1. ARRANGE : Préparer les données</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">newTask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;New Task&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;todo&#39;</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="w">  </span><span class="c1">// 2. ARRANGE : Mocker fetch pour simuler la réponse du backend</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="w">  </span><span class="p">(</span><span class="nb">globalThis</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">any</span><span class="p">).</span><span class="nx">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">vi</span><span class="p">.</span><span class="nx">fn</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="w">    </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span>
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="w">      </span><span class="nx">ok</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="w">      </span><span class="nx">json</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">({</span><span class="w"> </span><span class="p">...</span><span class="nx">newTask</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">1</span><span class="w"> </span><span class="p">}),</span>
+<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="w">    </span><span class="p">})</span>
+<a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a><span class="w">  </span><span class="p">);</span>
+<a id="__codelineno-49-12" name="__codelineno-49-12" href="#__codelineno-49-12"></a>
+<a id="__codelineno-49-13" name="__codelineno-49-13" href="#__codelineno-49-13"></a><span class="w">  </span><span class="c1">// 3. ACT : Appeler la fonction à tester</span>
+<a id="__codelineno-49-14" name="__codelineno-49-14" href="#__codelineno-49-14"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">created</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">api</span><span class="p">.</span><span class="nx">createTask</span><span class="p">(</span><span class="nx">newTask</span><span class="p">);</span>
+<a id="__codelineno-49-15" name="__codelineno-49-15" href="#__codelineno-49-15"></a>
+<a id="__codelineno-49-16" name="__codelineno-49-16" href="#__codelineno-49-16"></a><span class="w">  </span><span class="c1">// 4. ASSERT : Vérifier les résultats</span>
+<a id="__codelineno-49-17" name="__codelineno-49-17" href="#__codelineno-49-17"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">created</span><span class="p">.</span><span class="nx">id</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<a id="__codelineno-49-18" name="__codelineno-49-18" href="#__codelineno-49-18"></a><span class="w">  </span><span class="nx">expect</span><span class="p">(</span><span class="nx">created</span><span class="p">.</span><span class="nx">title</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="s1">&#39;New Task&#39;</span><span class="p">);</span>
+<a id="__codelineno-49-19" name="__codelineno-49-19" href="#__codelineno-49-19"></a><span class="p">});</span>
+</code></pre></div>
+<p><strong>Que fait ce test ?</strong></p>
+<ol>
+<li><strong>Arrange</strong> : Prépare les données (newTask) et mock fetch</li>
+<li><strong>Act</strong> : Appelle <code>api.createTask()</code></li>
+<li><strong>Assert</strong> : Vérifie que la tâche créée a bien un ID et le bon titre</li>
+</ol>
+<p><strong>Pattern AAA</strong> - le même qu'en Python ! 🎯</p>
+<hr />
+<h3 id="exercice-6-ecrire-un-test-frontend-10-min">✍️ Exercice 6 : Écrire un Test Frontend (10 min)<a class="headerlink" href="#exercice-6-ecrire-un-test-frontend-10-min" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Tester la fonction <code>deleteTask()</code> du module API</p>
+<p>Ouvrez <code>frontend/src/api/api.test.ts</code> et trouvez le test marqué <code>it.todo(...)</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="nx">it</span><span class="p">.</span><span class="nx">todo</span><span class="p">(</span><span class="s1">&#39;deletes a task&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="w">  </span><span class="c1">// TODO: Votre code ici</span>
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">  </span><span class="c1">// 1. Mocker fetch pour simuler une suppression réussie (status: 204)</span>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">  </span><span class="c1">// 2. Appeler await api.deleteTask(1)</span>
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">  </span><span class="c1">// 3. Vérifier que fetch a été appelé avec la bonne URL et méthode DELETE</span>
+<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="p">});</span>
+</code></pre></div>
+<p><strong>Votre mission :</strong> Implémentez ce test en suivant les 3 étapes !</p>
+<p><strong>Indice :</strong> Regardez le test <code>creates a new task</code> juste au-dessus pour vous inspirer.</p>
+<p><strong>Vérifier votre test :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>✅ Si le test passe → <strong>Bravo !</strong> Vous devriez voir <strong>4 tests passed</strong> au lieu de 3 !</p>
+<p>❌ Si le test échoue → Lisez l'erreur et corrigez</p>
+<hr />
+<h3 id="exercice-7-ecrire-un-test-update-frontend-10-min">✍️ Exercice 7 : Écrire un Test UPDATE Frontend (10 min)<a class="headerlink" href="#exercice-7-ecrire-un-test-update-frontend-10-min" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Tester la fonction <code>updateTask()</code> du module API</p>
+<p>Dans <code>frontend/src/api/api.test.ts</code>, trouvez le deuxième test marqué <code>it.todo(...)</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="nx">it</span><span class="p">.</span><span class="nx">todo</span><span class="p">(</span><span class="s1">&#39;updates a task&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="w">  </span><span class="c1">// TODO: Votre code ici</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="w">  </span><span class="c1">// 1. Mocker fetch pour simuler une mise à jour réussie</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="w">  </span><span class="c1">// 2. Appeler await api.updateTask(1, { title: &#39;Updated Title&#39; })</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="w">  </span><span class="c1">// 3. Vérifier que fetch a été appelé avec la bonne URL, méthode PUT et body</span>
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a><span class="p">});</span>
+</code></pre></div>
+<p><strong>Votre mission :</strong> Implémentez ce test en suivant les 3 étapes !</p>
+<p><strong>Indices :</strong></p>
+<ol>
+<li>C'est similaire au test DELETE, mais avec méthode <code>PUT</code> au lieu de <code>DELETE</code></li>
+<li>Il faut aussi vérifier le <code>body</code> contient les bonnes données</li>
+<li>Le mock fetch doit retourner un objet avec <code>json()</code> (comme dans <code>creates a new task</code>)</li>
+</ol>
+<p><strong>Vérifier votre test :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>npm<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>✅ Si le test passe → <strong>Bravo !</strong> Vous devriez voir <strong>5 tests passed</strong> !</p>
+<p>❌ Si le test échoue → Lisez l'erreur et corrigez</p>
+<hr />
+<h3 id="etape-67-verifier-la-couverture">Étape 6.7 : Vérifier la Couverture<a class="headerlink" href="#etape-67-verifier-la-couverture" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:coverage
+</code></pre></div>
+<p>Résultat :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>File       | % Stmts | % Branch | % Funcs | % Lines |
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>-----------|---------|----------|---------|---------|
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>api.ts     |   84.21 |    66.67 |   71.43 |   84.21 |
+</code></pre></div>
+<p>La couverture a augmenté grâce à vos tests ! 🎉</p>
+<h3 id="etape-68-lancer-lapplication-complete">Étape 6.8 : Lancer l'Application Complète<a class="headerlink" href="#etape-68-lancer-lapplication-complete" title="Permanent link">&para;</a></h3>
+<p><strong>Terminal 1 - Backend :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>uv<span class="w"> </span>run<span class="w"> </span>uvicorn<span class="w"> </span>src.app:app<span class="w"> </span>--reload
+</code></pre></div>
+<p><strong>Terminal 2 - Frontend :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>npm<span class="w"> </span>install<span class="w">  </span><span class="c1"># Si pas déjà fait</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div>
+<p><strong>Ouvrir dans le navigateur :</strong> <a href="http://localhost:5173">http://localhost:5173</a></p>
+<p>Vous devriez voir l'application TaskFlow fonctionner :</p>
+<p><img alt="TaskFlow Application" src="../img/working-app.png" /></p>
+<hr />
+<h2 id="exercices-bonus-java-avec-junit">🎁 Exercices Bonus : Java avec JUnit<a class="headerlink" href="#exercices-bonus-java-avec-junit" title="Permanent link">&para;</a></h2>
+<p><strong>Objectif :</strong> Voir que les principes de TDD s'appliquent à tous les langages !</p>
+<p>Les exercices Java sont dans le dossier <a href="../java-exercises/"><code>java-exercises/</code></a>.</p>
+<hr />
+<h3 id="prerequis-installer-java">Prérequis : Installer Java<a class="headerlink" href="#prerequis-installer-java" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="c1"># Vérifier si déjà installé</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>java<span class="w"> </span>-version<span class="w">    </span><span class="c1"># Devrait afficher Java 17+</span>
+</code></pre></div>
+<p><strong>Si pas installé :</strong></p>
+<ul>
+<li><strong>macOS :</strong> <code>brew install openjdk@17</code></li>
+<li><strong>Linux :</strong> <code>sudo apt install openjdk-17-jdk</code></li>
+<li><strong>Windows :</strong> Installer depuis <a href="https://adoptium.net/">adoptium.net</a></li>
+</ul>
+<p><strong>Commandes de base :</strong></p>
+<p>Chaque exercice utilise un Makefile pour simplifier la compilation et l'exécution :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>make<span class="w"> </span><span class="nb">test</span><span class="w">     </span><span class="c1"># Compiler + Exécuter les tests + Nettoyer</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>make<span class="w"> </span>compile<span class="w">  </span><span class="c1"># Compiler uniquement</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>make<span class="w"> </span>clean<span class="w">    </span><span class="c1"># Supprimer les fichiers .class</span>
+</code></pre></div>
+<hr />
+<h3 id="exercice-1-calculs-geometriques-composition-de-fonctions">✍️ Exercice 1 : Calculs Géométriques (Composition de Fonctions)<a class="headerlink" href="#exercice-1-calculs-geometriques-composition-de-fonctions" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Implémenter des opérations mathématiques en composant des fonctions simples</p>
+<p>Ouvrez le dossier <code>edl-starter/java-exercises/calculs-geo/</code></p>
+<p><strong>Fichiers du projet :</strong></p>
+<ul>
+<li><code>Addition.java</code> : Classe d'exemple déjà implémentée</li>
+<li><code>Produit.java</code> : À compléter (multiplication)</li>
+<li><code>Surface.java</code> : À compléter (surface rectangle)</li>
+<li><code>Perimetre.java</code> : À compléter (périmètre)</li>
+<li>Tests : <code>AdditionTest.java</code>, <code>ProduitTest.java</code>, <code>SurfaceTest.java</code>, <code>PerimetreTest.java</code></li>
+</ul>
+<p><strong>Votre mission - Partie 1 : Implémenter <code>Produit.mult()</code></strong></p>
+<p>Ouvrez <code>Produit.java</code> et complétez la méthode :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Produit</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">mult</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="w">        </span><span class="c1">// TODO: Retourner le produit de a et b</span>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Test correspondant</strong> (<code>ProduitTest.java</code>) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="nd">@Test</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testMult</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">Produit</span><span class="p">.</span><span class="na">mult</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Produit</span><span class="p">.</span><span class="na">mult</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">));</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">Produit</span><span class="p">.</span><span class="na">mult</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Indice :</strong> Utilisez l'opérateur <code>*</code> pour multiplier deux nombres.</p>
+<p><strong>Vérifier votre code :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="nb">cd</span><span class="w"> </span>edl-starter/java-exercises/calculs-geo
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p><strong>Résultat attendu après implémentation :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>JUnit version 4.13.2
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>..E.E
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>Time: 0.006
+<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>There were 2 failures:
+<a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>...
+<a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a>Tests run: 4,  Failures: 2
+</code></pre></div>
+<p>Le test <code>ProduitTest</code> devrait maintenant passer !</p>
+<hr />
+<p><strong>Votre mission - Partie 2 : Implémenter <code>Surface.surf()</code></strong></p>
+<p>Ouvrez <code>Surface.java</code> et complétez la méthode :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Surface</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">surf</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="w">        </span><span class="c1">// TODO: Utiliser Produit.mult() pour calculer la surface d&#39;un rectangle</span>
+<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Test correspondant</strong> (<code>SurfaceTest.java</code>) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="nd">@Test</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSurf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">Surface</span><span class="p">.</span><span class="na">surf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+<a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Surface</span><span class="p">.</span><span class="na">surf</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">));</span>
+<a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="n">Surface</span><span class="p">.</span><span class="na">surf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">));</span>
+<a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Indice :</strong> La surface d'un rectangle = longueur × largeur. Réutilisez la fonction <code>Produit.mult()</code> que vous venez d'écrire.</p>
+<p><strong>Exemple de solution :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">return</span><span class="w"> </span><span class="n">Produit</span><span class="p">.</span><span class="na">mult</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Vérifier :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>Maintenant 2 tests sur 4 devraient passer.</p>
+<hr />
+<p><strong>Votre mission - Partie 3 : Implémenter <code>Perimetre.perim()</code></strong></p>
+<p>Ouvrez <code>Perimetre.java</code> et complétez la méthode :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Perimetre</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">perim</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="w">        </span><span class="c1">// TODO: Calculer (a+b)*c en utilisant Addition.add() et Produit.mult()</span>
+<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Test correspondant</strong> (<code>PerimetreTest.java</code>) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="nd">@Test</span>
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPerim</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">Perimetre</span><span class="p">.</span><span class="na">perim</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">  </span><span class="c1">// (2+3)*2 = 10</span>
+<a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Perimetre</span><span class="p">.</span><span class="na">perim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">));</span>
+<a id="__codelineno-69-5" name="__codelineno-69-5" href="#__codelineno-69-5"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="n">Perimetre</span><span class="p">.</span><span class="na">perim</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span><span class="w">  </span><span class="c1">// (3+4)*2 = 14</span>
+<a id="__codelineno-69-6" name="__codelineno-69-6" href="#__codelineno-69-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Indice :</strong></p>
+<ol>
+<li>Commencez par additionner <code>a</code> et <code>b</code> avec <code>Addition.add(a, b)</code></li>
+<li>Multipliez le résultat par <code>c</code> avec <code>Produit.mult()</code></li>
+</ol>
+<p><strong>Exemple de solution :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">somme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Addition</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="k">return</span><span class="w"> </span><span class="n">Produit</span><span class="p">.</span><span class="na">mult</span><span class="p">(</span><span class="n">somme</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Vérifier :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p><strong>Résultat final attendu :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>JUnit version 4.13.2
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>....
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a>Time: 0.006
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a>
+<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a>OK (4 tests)
+</code></pre></div>
+<p>Tous les tests passent ? Bravo ! Passez à l'exercice suivant.</p>
+<hr />
+<h3 id="exercice-2-money-addition-avec-validation-de-devises">✍️ Exercice 2 : Money - Addition avec Validation de Devises<a class="headerlink" href="#exercice-2-money-addition-avec-validation-de-devises" title="Permanent link">&para;</a></h3>
+<p><strong>🎯 Objectif :</strong> Implémenter une méthode d'addition qui valide que deux montants ont la même devise</p>
+<p>Ouvrez le dossier <code>edl-starter/java-exercises/money/</code></p>
+<p><strong>Fichiers du projet :</strong></p>
+<ul>
+<li><code>Money.java</code> : Classe avec méthode <code>add()</code> à implémenter</li>
+<li><code>MoneyTest.java</code> : Tests JUnit (certains avec TODOs à compléter)</li>
+</ul>
+<p><strong>Votre mission :</strong></p>
+<p>Ouvrez <code>Money.java</code> et implémentez la méthode <code>add()</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="kd">public</span><span class="w"> </span><span class="n">Money</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">Money</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">    </span><span class="c1">// TODO: Vérifier si this.currency().equals(m.currency())</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="w">    </span><span class="c1">// TODO: Si oui, retourner new Money(this.amount() + m.amount(), this.currency())</span>
+<a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a><span class="w">    </span><span class="c1">// TODO: Si non, throw new Exception(&quot;Not Same currency&quot;)</span>
+<a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Règles métier :</strong></p>
+<ul>
+<li>On peut additionner deux montants de même devise : <code>12 EUR + 5 EUR = 17 EUR</code></li>
+<li>On ne peut PAS additionner deux montants de devises différentes : <code>12 EUR + 5 USD</code> → Exception</li>
+</ul>
+<p><strong>Tests correspondants</strong> (<code>MoneyTest.java</code>) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="nd">@Test</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSimpleAdd</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">m12EUR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span><span class="p">);</span>
+<a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">m14EUR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span><span class="p">);</span>
+<a id="__codelineno-74-5" name="__codelineno-74-5" href="#__codelineno-74-5"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span><span class="p">);</span>
+<a id="__codelineno-74-6" name="__codelineno-74-6" href="#__codelineno-74-6"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">m12EUR</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">m14EUR</span><span class="p">));</span>
+<a id="__codelineno-74-7" name="__codelineno-74-7" href="#__codelineno-74-7"></a><span class="p">}</span>
+<a id="__codelineno-74-8" name="__codelineno-74-8" href="#__codelineno-74-8"></a>
+<a id="__codelineno-74-9" name="__codelineno-74-9" href="#__codelineno-74-9"></a><span class="nd">@Test</span><span class="p">(</span><span class="n">expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exception</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<a id="__codelineno-74-10" name="__codelineno-74-10" href="#__codelineno-74-10"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testAddDifferentCurrency</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-74-11" name="__codelineno-74-11" href="#__codelineno-74-11"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">m12EUR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span><span class="p">);</span>
+<a id="__codelineno-74-12" name="__codelineno-74-12" href="#__codelineno-74-12"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">m5USD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;USD&quot;</span><span class="p">);</span>
+<a id="__codelineno-74-13" name="__codelineno-74-13" href="#__codelineno-74-13"></a><span class="w">    </span><span class="n">m12EUR</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">m5USD</span><span class="p">);</span><span class="w">  </span><span class="c1">// Doit lever une exception</span>
+<a id="__codelineno-74-14" name="__codelineno-74-14" href="#__codelineno-74-14"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Indices :</strong></p>
+<ol>
+<li>Utilisez <code>this.currency()</code> pour obtenir la devise de l'objet courant</li>
+<li>Utilisez <code>m.currency()</code> pour obtenir la devise du paramètre</li>
+<li>Comparez avec <code>.equals()</code> (pas <code>==</code>)</li>
+<li>Si les devises sont identiques, créez un nouveau <code>Money</code> avec la somme des montants</li>
+<li>Si les devises sont différentes, lancez une exception avec <code>throw new Exception("Not Same currency")</code></li>
+</ol>
+<p><strong>Exemple de solution :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="kd">public</span><span class="w"> </span><span class="n">Money</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">Money</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">currency</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="na">currency</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">amount</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">amount</span><span class="p">(),</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">currency</span><span class="p">());</span>
+<a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Exception</span><span class="p">(</span><span class="s">&quot;Not Same currency&quot;</span><span class="p">);</span>
+<a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Vérifier votre code :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="nb">cd</span><span class="w"> </span>edl-starter/java-exercises/money
+<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p><strong>Résultat attendu :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>JUnit version 4.13.2
+<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a>....
+<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a>Time: 0.007
+<a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a>
+<a id="__codelineno-77-5" name="__codelineno-77-5" href="#__codelineno-77-5"></a>OK (4 tests)
+</code></pre></div>
+<p>Tous les tests passent ? Félicitations !</p>
+<hr />
+<h3 id="comprendre-junit-4-les-bases">📚 Comprendre JUnit 4 - Les Bases<a class="headerlink" href="#comprendre-junit-4-les-bases" title="Permanent link">&para;</a></h3>
+<p><strong>Structure d'un test JUnit :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Test</span><span class="p">;</span>
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="kn">import static</span><span class="w"> </span><span class="nn">org.junit.Assert.*</span><span class="p">;</span>
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>
+<a id="__codelineno-78-4" name="__codelineno-78-4" href="#__codelineno-78-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ExampleTest</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-78-5" name="__codelineno-78-5" href="#__codelineno-78-5"></a>
+<a id="__codelineno-78-6" name="__codelineno-78-6" href="#__codelineno-78-6"></a><span class="w">    </span><span class="nd">@Test</span>
+<a id="__codelineno-78-7" name="__codelineno-78-7" href="#__codelineno-78-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testMethodName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-78-8" name="__codelineno-78-8" href="#__codelineno-78-8"></a><span class="w">        </span><span class="c1">// Arrange : Préparer les données</span>
+<a id="__codelineno-78-9" name="__codelineno-78-9" href="#__codelineno-78-9"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a id="__codelineno-78-10" name="__codelineno-78-10" href="#__codelineno-78-10"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-78-11" name="__codelineno-78-11" href="#__codelineno-78-11"></a>
+<a id="__codelineno-78-12" name="__codelineno-78-12" href="#__codelineno-78-12"></a><span class="w">        </span><span class="c1">// Act : Exécuter la méthode à tester</span>
+<a id="__codelineno-78-13" name="__codelineno-78-13" href="#__codelineno-78-13"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyClass</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-78-14" name="__codelineno-78-14" href="#__codelineno-78-14"></a>
+<a id="__codelineno-78-15" name="__codelineno-78-15" href="#__codelineno-78-15"></a><span class="w">        </span><span class="c1">// Assert : Vérifier le résultat</span>
+<a id="__codelineno-78-16" name="__codelineno-78-16" href="#__codelineno-78-16"></a><span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<a id="__codelineno-78-17" name="__codelineno-78-17" href="#__codelineno-78-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-78-18" name="__codelineno-78-18" href="#__codelineno-78-18"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Annotations JUnit :</strong></p>
+<ul>
+<li><code>@Test</code> : Indique qu'une méthode est un test</li>
+<li><code>@Test(expected = Exception.class)</code> : Le test passe si l'exception est levée</li>
+</ul>
+<p><strong>Méthodes d'assertion principales :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="n">assertEquals</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span><span class="w">     </span><span class="c1">// Vérifie que deux valeurs sont égales</span>
+<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a><span class="n">assertTrue</span><span class="p">(</span><span class="n">condition</span><span class="p">);</span><span class="w">              </span><span class="c1">// Vérifie qu&#39;une condition est vraie</span>
+<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a><span class="n">assertFalse</span><span class="p">(</span><span class="n">condition</span><span class="p">);</span><span class="w">             </span><span class="c1">// Vérifie qu&#39;une condition est fausse</span>
+<a id="__codelineno-79-4" name="__codelineno-79-4" href="#__codelineno-79-4"></a><span class="n">assertNull</span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w">                 </span><span class="c1">// Vérifie qu&#39;un objet est null</span>
+<a id="__codelineno-79-5" name="__codelineno-79-5" href="#__codelineno-79-5"></a><span class="n">assertNotNull</span><span class="p">(</span><span class="n">object</span><span class="p">);</span><span class="w">              </span><span class="c1">// Vérifie qu&#39;un objet n&#39;est pas null</span>
+</code></pre></div>
+<p><strong>Exemple de test d'exception :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="nd">@Test</span><span class="p">(</span><span class="n">expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exception</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<a id="__codelineno-80-2" name="__codelineno-80-2" href="#__codelineno-80-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testInvalidOperation</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-80-3" name="__codelineno-80-3" href="#__codelineno-80-3"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span><span class="p">);</span>
+<a id="__codelineno-80-4" name="__codelineno-80-4" href="#__codelineno-80-4"></a><span class="w">    </span><span class="n">Money</span><span class="w"> </span><span class="n">m2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Money</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;USD&quot;</span><span class="p">);</span>
+<a id="__codelineno-80-5" name="__codelineno-80-5" href="#__codelineno-80-5"></a><span class="w">    </span><span class="n">m1</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">m2</span><span class="p">);</span><span class="w">  </span><span class="c1">// Cette ligne doit lever une Exception</span>
+<a id="__codelineno-80-6" name="__codelineno-80-6" href="#__codelineno-80-6"></a><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

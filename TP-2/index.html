@@ -1,0 +1,2086 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Travaux pratiques sur les tests unitaires, CI/CD et déploiement">
+      
+      
+        <meta name="author" content="UMONS - Faculté des Sciences">
+      
+      
+      
+        <link rel="prev" href="../TP-1/">
+      
+      
+        <link rel="next" href="../TP-3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>TP 2 - EDL - Expertises digitale et logicielle</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tp-2-cicd-avec-github-actions" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="EDL - Expertises digitale et logicielle" class="md-header__button md-logo" aria-label="EDL - Expertises digitale et logicielle" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EDL - Expertises digitale et logicielle
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TP 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Passer en mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Passer en mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Passer en mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/umons-ig/edl-starter" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umons-ig/edl-starter
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../TP-1/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TP 1
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TP 2
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../TP-3/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  TP 3
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="EDL - Expertises digitale et logicielle" class="md-nav__button md-logo" aria-label="EDL - Expertises digitale et logicielle" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    EDL - Expertises digitale et logicielle
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/umons-ig/edl-starter" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umons-ig/edl-starter
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TP-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectifs-du-tp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Objectifs du TP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quest-ce-que-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Qu'est-ce que CI/CD ?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequis-verifier-votre-connexion-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Prérequis : Vérifier votre connexion GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Prérequis : Vérifier votre connexion GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-allez-dans-votre-repository-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Allez dans votre repository cloné
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-testez-votre-connexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Testez votre connexion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configuration-https-si-vous-avez-une-erreur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuration HTTPS (si vous avez une erreur)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuration HTTPS (si vous avez une erreur)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creer-un-personal-access-token-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Créer un Personal Access Token (PAT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utiliser-le-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utiliser le token
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structure-dun-workflow-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Structure d'un Workflow GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-1-workflow-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 1 : Workflow Backend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 1 : Workflow Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-2-workflow-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 2 : Workflow Frontend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 2 : Workflow Frontend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#note-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Note importante
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-3-deboguer-un-echec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 3 : Déboguer un Échec
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 3 : Déboguer un Échec">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lecon-apprise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Leçon apprise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-4-protection-de-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 4 : Protection de Branches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 4 : Protection de Branches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cest-quoi-une-pull-request-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 C'est quoi une Pull Request (PR) ?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objectif_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partie-1-activer-la-protection-de-branche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Partie 1 : Activer la Protection de Branche
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partie-2-tester-avec-une-branche-qui-casse-les-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧪 Partie 2 : Tester avec une Branche Qui Casse les Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partie-3-corriger-et-merger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Partie 3 : Corriger et Merger
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-vous-devriez-voir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📸 Ce Que Vous Devriez Voir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#points-cles-a-comprendre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 Points Clés à Comprendre
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-5-workflows-reutilisables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 5 : Workflows Réutilisables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 5 : Workflows Réutilisables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résultat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-6-separer-tests-unitaires-et-e2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 6 : Séparer Tests Unitaires et E2E
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 6 : Séparer Tests Unitaires et E2E">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat-attendu_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résultat attendu
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercice-7-badges-de-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✍️ Exercice 7 : Badges de Status
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✍️ Exercice 7 : Badges de Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resultat_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Résultat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recapitulatif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Récapitulatif
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Récapitulatif">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#competences-acquises" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Compétences Acquises
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erreurs-frequentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐛 Erreurs Fréquentes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐛 Erreurs Fréquentes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uv-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ uv: command not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests-qui-passent-localement-mais-echouent-sur-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Tests qui passent localement mais échouent sur GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required-status-check-has-not-been-successful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ "Required status check has not been successful"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-qui-ne-se-restaure-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Cache qui ne se restaure pas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-workflow-java-optionnel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎁 BONUS : Workflow Java (Optionnel)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎁 BONUS : Workflow Java (Optionnel)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectif_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectif
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nouveaux-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nouveaux concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TP-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TP 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tp-2-cicd-avec-github-actions">🚀 TP 2 : CI/CD avec GitHub Actions<a class="headerlink" href="#tp-2-cicd-avec-github-actions" title="Permanent link">&para;</a></h1>
+<p><strong>Prérequis :</strong> TP 1 terminé (backend et frontend avec tests)</p>
+<h2 id="objectifs-du-tp">🎯 Objectifs du TP<a class="headerlink" href="#objectifs-du-tp" title="Permanent link">&para;</a></h2>
+<p><strong>Objectif principal :</strong> Automatiser les tests avec GitHub Actions</p>
+<p>À la fin de ce TP, vous aurez :</p>
+<ol>
+<li>✅ Créé un <strong>workflow backend</strong> qui teste automatiquement votre code Python</li>
+<li>✅ Créé un <strong>workflow frontend</strong> qui teste et build votre code TypeScript</li>
+<li>✅ Compris comment <strong>déboguer</strong> un workflow qui échoue</li>
+<li>✅ Protégé votre branche <strong>main</strong> pour empêcher les bugs d'arriver en production</li>
+<li>✅ Créé des <strong>workflows réutilisables</strong> et des <strong>pipelines CI</strong></li>
+<li>✅ Séparé les <strong>tests rapides</strong> (unitaires) des <strong>tests lents</strong> (E2E)</li>
+<li>✅ Ajouté des <strong>badges de status</strong> à votre README</li>
+</ol>
+<hr />
+<h2 id="quest-ce-que-cicd">📦 Qu'est-ce que CI/CD ?<a class="headerlink" href="#quest-ce-que-cicd" title="Permanent link">&para;</a></h2>
+<p><strong>CI (Continuous Integration) :</strong></p>
+<ul>
+<li>Intégration Continue</li>
+<li>À chaque push, les tests s'exécutent automatiquement</li>
+<li>Détecte les bugs immédiatement</li>
+</ul>
+<p><strong>CD (Continuous Deployment) :</strong></p>
+<ul>
+<li>Déploiement Continu (TP 3)</li>
+<li>Si les tests passent, déploiement automatique</li>
+</ul>
+<p><strong>GitHub Actions :</strong></p>
+<ul>
+<li>Service gratuit de GitHub</li>
+<li>Exécute vos tests sur des serveurs GitHub</li>
+<li>Vérifie chaque commit et pull request</li>
+</ul>
+<hr />
+<h2 id="prerequis-verifier-votre-connexion-github">⚙️ Prérequis : Vérifier votre connexion GitHub<a class="headerlink" href="#prerequis-verifier-votre-connexion-github" title="Permanent link">&para;</a></h2>
+<p><strong>Avant de commencer, assurez-vous que vous pouvez pousser du code sur votre repository GitHub.</strong></p>
+<h3 id="1-allez-dans-votre-repository-clone">1. Allez dans votre repository cloné<a class="headerlink" href="#1-allez-dans-votre-repository-clone" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>chemin/vers/votre/repository
+</code></pre></div>
+<h3 id="2-testez-votre-connexion">2. Testez votre connexion<a class="headerlink" href="#2-testez-votre-connexion" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<p><strong>Résultats possibles :</strong></p>
+<ul>
+<li>✅ <strong>Everything up-to-date</strong> → Parfait, vous êtes prêt !</li>
+<li>❌ <strong>Error: authentication failed</strong> → Suivez les instructions ci-dessous</li>
+</ul>
+<h3 id="3-configuration-https-si-vous-avez-une-erreur">3. Configuration HTTPS (si vous avez une erreur)<a class="headerlink" href="#3-configuration-https-si-vous-avez-une-erreur" title="Permanent link">&para;</a></h3>
+<h4 id="creer-un-personal-access-token-pat">Créer un Personal Access Token (PAT)<a class="headerlink" href="#creer-un-personal-access-token-pat" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Sur GitHub, allez dans : <strong>Settings</strong> → <strong>Developer settings</strong> → <strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong></li>
+<li>Cliquez sur <strong>"Generate new token (classic)"</strong></li>
+<li>Configurez :</li>
+<li>Note : <code>TP EDL</code></li>
+<li>Expiration : <code>90 days</code></li>
+<li>Cochez : ✅ <strong><code>repo</code></strong> (accès complet aux repositories)</li>
+<li>Cliquez sur <strong>"Generate token"</strong></li>
+<li><strong>⚠️ Copiez le token immédiatement</strong> (vous ne pourrez plus le revoir !)</li>
+</ol>
+<h4 id="utiliser-le-token">Utiliser le token<a class="headerlink" href="#utiliser-le-token" title="Permanent link">&para;</a></h4>
+<p>Lors du prochain <code>git push</code>, Git vous demandera :</p>
+<ul>
+<li><strong>Username :</strong> Votre nom d'utilisateur GitHub</li>
+<li><strong>Password :</strong> <strong>Collez votre token</strong> (PAS votre mot de passe GitHub !)</li>
+</ul>
+<hr />
+<h2 id="structure-dun-workflow-github-actions">📚 Structure d'un Workflow GitHub Actions<a class="headerlink" href="#structure-dun-workflow-github-actions" title="Permanent link">&para;</a></h2>
+<p>Un workflow GitHub Actions est un fichier <strong>YAML</strong> dans <code>.github/workflows/</code>.</p>
+<p><strong>Structure de base :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mon Workflow</span><span class="w">          </span><span class="c1"># 1️⃣ Nom affiché dans GitHub</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">on</span><span class="p">:</span><span class="w">                         </span><span class="c1"># 2️⃣ Quand s&#39;exécute-t-il ?</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nt">jobs</span><span class="p">:</span><span class="w">                       </span><span class="c1"># 3️⃣ Les tâches à faire</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w">  </span><span class="c1"># 4️⃣ Machine virtuelle</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">                  </span><span class="c1"># 5️⃣ Les étapes</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest</span>
+</code></pre></div>
+<p><strong>Concepts clés :</strong></p>
+<ul>
+<li><strong><code>name</code></strong> : Nom du workflow</li>
+<li><strong><code>on</code></strong> : Déclencheurs (push, pull_request, etc.)</li>
+<li><strong><code>jobs</code></strong> : Tâches parallèles</li>
+<li><strong><code>steps</code></strong> : Étapes séquentielles</li>
+<li><strong><code>uses</code></strong> : Action pré-faite</li>
+<li><strong><code>run</code></strong> : Commande shell</li>
+</ul>
+<hr />
+<h2 id="exercice-1-workflow-backend">✍️ Exercice 1 : Workflow Backend<a class="headerlink" href="#exercice-1-workflow-backend" title="Permanent link">&para;</a></h2>
+<h3 id="objectif">Objectif<a class="headerlink" href="#objectif" title="Permanent link">&para;</a></h3>
+<p>Créer un workflow qui teste automatiquement le backend à chaque push.</p>
+<h3 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Créez la structure des workflows :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>.github/workflows
+</code></pre></div>
+<ol>
+<li><strong>Créez le fichier <code>.github/workflows/backend.yml</code> avec ce squelette :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Backend Tests</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">      </span><span class="c1"># TODO : Setup Python 3.11 avec cache pip</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">      </span><span class="c1"># TODO : Installez UV avec pip</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">      </span><span class="c1"># TODO : Installez les dépendances (cd backend &amp;&amp; uv sync)</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">      </span><span class="c1"># TODO : Lancez les tests</span>
+</code></pre></div>
+<ol>
+<li><strong>Complétez les TODO en vous aidant de la documentation</strong></li>
+</ol>
+<p><strong>📖 Documentation utile :</strong>
+   - <a href="https://github.com/actions/setup-python#caching-packages-dependencies">actions/setup-python</a> : Pour Setup Python avec cache</p>
+<p><strong>💡 Indices :</strong>
+   - <strong>Setup Python</strong> : Utilisez <code>actions/setup-python@v5</code> avec les paramètres :
+     - <code>python-version: '3.11'</code>
+     - <code>cache: 'pip'</code> (pour activer le cache automatique)
+   - <strong>Commandes shell</strong> : Utilisez <code>run:</code> suivi de la commande
+   - <strong>Multi-lignes</strong> : Utilisez <code>run: |</code> pour exécuter plusieurs commandes</p>
+<p><strong>Exemple de step avec run :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mon étape</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="no">cd mon-dossier</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="no">ma-commande</span>
+</code></pre></div>
+<ol>
+<li><strong>Testez localement avant de pousser :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w"> </span>--cov
+</code></pre></div>
+<ol>
+<li><strong>Poussez et vérifiez sur GitHub Actions :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>add<span class="w"> </span>.github/workflows/backend.yml
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;ci: add backend workflow&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h3 id="resultat-attendu">✅ Résultat attendu<a class="headerlink" href="#resultat-attendu" title="Permanent link">&para;</a></h3>
+<p>Dans l'onglet "Actions" sur GitHub, vous devriez voir :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>✅ Backend Tests
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  └─ test
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>      ├─ Checkout code
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>      ├─ Setup Python
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>      ├─ Install UV
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>      ├─ Install dependencies
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>      └─ Run tests
+</code></pre></div>
+<hr />
+<h2 id="exercice-2-workflow-frontend">✍️ Exercice 2 : Workflow Frontend<a class="headerlink" href="#exercice-2-workflow-frontend" title="Permanent link">&para;</a></h2>
+<h3 id="objectif_1">Objectif<a class="headerlink" href="#objectif_1" title="Permanent link">&para;</a></h3>
+<p>Créer un workflow qui teste et build le frontend automatiquement.</p>
+<h3 id="instructions_1">Instructions<a class="headerlink" href="#instructions_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Créez le fichier <code>.github/workflows/frontend.yml</code> avec ce squelette :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Frontend Tests</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout code</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">      </span><span class="c1"># TODO : Setup Node.js 18 avec cache npm</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">      </span><span class="c1"># Indice : cache-dependency-path: frontend/package-lock.json</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">      </span><span class="c1"># TODO : Installez les dépendances (cd frontend &amp;&amp; npm ci)</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">      </span><span class="c1"># TODO : Lancez les tests</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">      </span><span class="c1"># TODO : Vérifiez le build</span>
+</code></pre></div>
+<ol>
+<li><strong>Complétez les TODO en vous aidant de la documentation</strong></li>
+</ol>
+<p><strong>📖 Documentation utile :</strong>
+   - <a href="https://github.com/actions/setup-node#caching-global-packages-data">actions/setup-node</a> : Pour Setup Node.js avec cache</p>
+<p><strong>💡 Indices :</strong>
+   - <strong>Setup Node</strong> : Utilisez <code>actions/setup-node@v4</code> avec les paramètres :
+     - <code>node-version: '18'</code>
+     - <code>cache: 'npm'</code>
+     - <code>cache-dependency-path: frontend/package-lock.json</code>
+   - <strong>npm ci</strong> : Installe exactement les versions de <code>package-lock.json</code></p>
+<ol>
+<li><strong>Testez localement :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>frontend
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>npm<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--<span class="w"> </span>--run
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>npm<span class="w"> </span>run<span class="w"> </span>build
+</code></pre></div>
+<ol>
+<li><strong>Poussez et vérifiez :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>add<span class="w"> </span>.github/workflows/frontend.yml
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;ci: add frontend workflow&quot;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h3 id="resultat-attendu_1">✅ Résultat attendu<a class="headerlink" href="#resultat-attendu_1" title="Permanent link">&para;</a></h3>
+<p>Vous devriez voir <strong>2 workflows en parallèle</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>✅ Backend Tests
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>✅ Frontend Tests
+</code></pre></div>
+<h3 id="note-importante">💡 Note importante<a class="headerlink" href="#note-importante" title="Permanent link">&para;</a></h3>
+<p><strong><code>npm ci</code> vs <code>npm install</code> :</strong></p>
+<ul>
+<li><code>npm ci</code> : Installe exactement ce qui est dans <code>package-lock.json</code> (déterministe)</li>
+<li><code>npm install</code> : Peut mettre à jour les versions (moins fiable pour CI)</li>
+</ul>
+<hr />
+<h2 id="exercice-3-deboguer-un-echec">✍️ Exercice 3 : Déboguer un Échec<a class="headerlink" href="#exercice-3-deboguer-un-echec" title="Permanent link">&para;</a></h2>
+<h3 id="objectif_2">Objectif<a class="headerlink" href="#objectif_2" title="Permanent link">&para;</a></h3>
+<p>Apprendre à lire les logs et corriger les erreurs de workflow.</p>
+<h3 id="instructions_2">Instructions<a class="headerlink" href="#instructions_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Introduisez volontairement un bug dans <code>backend/tests/test_api.py</code> :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_health_check</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;BROKEN&quot;</span>  <span class="c1"># ❌ Faux exprès !</span>
+</code></pre></div>
+<ol>
+<li><strong>Poussez le bug :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>add<span class="w"> </span>backend/tests/test_api.py
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;test: intentional failure for learning&quot;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<ol>
+<li><strong>Observez l'échec sur GitHub Actions :</strong></li>
+<li>Allez dans "Actions"</li>
+<li>Cliquez sur le workflow ❌ rouge</li>
+<li>
+<p>Cliquez sur l'étape "Run tests"</p>
+</li>
+<li>
+<p><strong>Analysez les logs :</strong></p>
+</li>
+<li>Quel test échoue ?</li>
+<li>À quelle ligne ?</li>
+<li>
+<p>Quelle est l'erreur exacte ?</p>
+</li>
+<li>
+<p><strong>Reproduisez localement :</strong></p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_health_check<span class="w"> </span>-v
+</code></pre></div>
+<ol>
+<li><strong>Corrigez le bug :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;healthy&quot;</span>  <span class="c1"># ✅ Correct</span>
+</code></pre></div>
+<ol>
+<li><strong>Vérifiez localement puis poussez :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>tests/test_api.py::test_health_check<span class="w"> </span>-v
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>git<span class="w"> </span>add<span class="w"> </span>backend/tests/test_api.py
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;fix: correct health check assertion&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h3 id="lecon-apprise">✅ Leçon apprise<a class="headerlink" href="#lecon-apprise" title="Permanent link">&para;</a></h3>
+<p><strong>Si ça passe localement, ça passera sur GitHub !</strong></p>
+<hr />
+<h2 id="exercice-4-protection-de-branches">✍️ Exercice 4 : Protection de Branches<a class="headerlink" href="#exercice-4-protection-de-branches" title="Permanent link">&para;</a></h2>
+<h3 id="cest-quoi-une-pull-request-pr">📖 C'est quoi une Pull Request (PR) ?<a class="headerlink" href="#cest-quoi-une-pull-request-pr" title="Permanent link">&para;</a></h3>
+<p><strong>Concept simple :</strong> Au lieu de pousser directement sur <code>main</code>, vous créez une <strong>branche</strong>, faites vos modifications, puis demandez à merger via une <strong>Pull Request</strong>.</p>
+<p><strong>Workflow visuel :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>main ──────────────────────────●  (production, protégée)
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>                               ↑
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>                          [Pull Request]
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>                               │
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>                         ✅ Tests passent ?
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>                               │
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>feature/ma-branche ───●────●───┘  (votre travail)
+</code></pre></div>
+<p><strong>Avantages :</strong></p>
+<ul>
+<li>✅ Les tests s'exécutent <strong>avant</strong> le merge</li>
+<li>✅ Quelqu'un peut <strong>review</strong> votre code</li>
+<li>✅ La branche <code>main</code> reste <strong>stable</strong></li>
+</ul>
+<p><strong>Dans cet exercice, vous allez vivre cette situation !</strong></p>
+<hr />
+<h3 id="objectif_3">🎯 Objectif<a class="headerlink" href="#objectif_3" title="Permanent link">&para;</a></h3>
+<p>Empêcher les merges sur <code>main</code> si les tests échouent. Vous allez créer une branche avec un bug, ouvrir une PR, et voir GitHub bloquer le merge !</p>
+<h3 id="partie-1-activer-la-protection-de-branche">📖 Partie 1 : Activer la Protection de Branche<a class="headerlink" href="#partie-1-activer-la-protection-de-branche" title="Permanent link">&para;</a></h3>
+<p>⚠️ <strong>Prérequis :</strong> Vous devez avoir déjà poussé vos workflows des exercices 1 et 2, et ils doivent avoir tourné au moins une fois.</p>
+<ol>
+<li>
+<p><strong>Sur GitHub, allez dans votre repository → Settings → Branches</strong></p>
+</li>
+<li>
+<p><strong>Cliquez sur "Add branch protection rule"</strong></p>
+</li>
+<li>
+<p><strong>Configurez ces paramètres :</strong></p>
+</li>
+</ol>
+<p><strong>a) Branch name pattern</strong>
+   - Entrez : <code>main</code></p>
+<p><strong>b) Require status checks to pass before merging</strong>
+   - ✅ Cochez la case <strong>"Require status checks to pass before merging"</strong>
+   - Dans la barre de recherche qui apparaît, tapez : <code>test</code>
+   - Cliquez sur <code>test</code> dans les résultats (c'est le nom du job de vos workflows)</p>
+<p>💡 <strong>Si <code>test</code> n'apparaît pas :</strong> Vos workflows n'ont pas encore tourné. Retournez sur l'onglet "Actions" et vérifiez qu'ils ont bien été exécutés.</p>
+<ol>
+<li><strong>Scrollez tout en bas et cliquez sur "Create"</strong></li>
+</ol>
+<p>⚠️ <strong>Important :</strong> Ne cochez RIEN d'autre ! Les autres options sont pour des cas avancés.</p>
+<h3 id="partie-2-tester-avec-une-branche-qui-casse-les-tests">🧪 Partie 2 : Tester avec une Branche Qui Casse les Tests<a class="headerlink" href="#partie-2-tester-avec-une-branche-qui-casse-les-tests" title="Permanent link">&para;</a></h3>
+<p><strong>Scénario réaliste :</strong> Vous introduisez un bug accidentellement. GitHub doit vous empêcher de merger !</p>
+<ol>
+<li><strong>Créez une nouvelle branche :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/test-branch-protection
+</code></pre></div>
+<ol>
+<li><strong>Introduisez un bug dans <code>backend/tests/test_api.py</code> :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_health_check</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;BROKEN&quot;</span>  <span class="c1"># ❌ Bug volontaire</span>
+</code></pre></div>
+<ol>
+<li><strong>Commitez et poussez :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>git<span class="w"> </span>add<span class="w"> </span>backend/tests/test_api.py
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;test: intentionally break health check&quot;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/test-branch-protection
+</code></pre></div>
+<ol>
+<li><strong>Créez une Pull Request :</strong></li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Si c&#39;est la première fois, configurez le repo par défaut</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>gh<span class="w"> </span>repo<span class="w"> </span>set-default
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># Sélectionnez VOTRE fork (pas le repo d&#39;origine)</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># Créez la PR</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;Test branch protection&quot;</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;Testing if broken tests block merge&quot;</span>
+</code></pre></div>
+   💡 <strong>Attention :</strong> les commandes <code>gh ...</code> nécessitent l’installation de <strong>GitHub CLI</strong>.<br />
+   Si vous ne l’avez pas encore, installez-le avant d’exécuter ces commandes.</p>
+<ol>
+<li><strong>Observez ce qui se passe :</strong></li>
+<li>⏳ Les workflows s'exécutent automatiquement</li>
+<li>❌ Le job <code>test</code> échoue (tests backend en erreur)</li>
+<li>🔒 Le bouton <strong>"Merge pull request"</strong> devient <strong>grisé et inutilisable</strong></li>
+<li>⚠️ GitHub affiche : <em>"Required status check 'test' has not been successful"</em></li>
+</ol>
+<h3 id="partie-3-corriger-et-merger">✅ Partie 3 : Corriger et Merger<a class="headerlink" href="#partie-3-corriger-et-merger" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Corrigez le bug (toujours sur la même branche) :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;healthy&quot;</span>  <span class="c1"># ✅ Correct</span>
+</code></pre></div>
+<ol>
+<li><strong>Commitez et poussez la correction :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>git<span class="w"> </span>add<span class="w"> </span>backend/tests/test_api.py
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;fix: correct health check assertion&quot;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/test-branch-protection
+</code></pre></div>
+<ol>
+<li><strong>Observez la PR :</strong></li>
+<li>✅ Les workflows se relancent <strong>automatiquement</strong></li>
+<li>✅ Les tests passent maintenant</li>
+<li>
+<p>✅ Le bouton <strong>"Merge pull request"</strong> devient <strong>vert et cliquable</strong></p>
+</li>
+<li>
+<p><strong>Mergez la PR :</strong></p>
+</li>
+<li>Cliquez sur <strong>"Merge pull request"</strong></li>
+<li>
+<p>Confirmez avec <strong>"Confirm merge"</strong></p>
+</li>
+<li>
+<p><strong>Nettoyez votre environnement local :</strong></p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/test-branch-protection
+</code></pre></div>
+<h3 id="ce-que-vous-devriez-voir">📸 Ce Que Vous Devriez Voir<a class="headerlink" href="#ce-que-vous-devriez-voir" title="Permanent link">&para;</a></h3>
+<p><strong>Étape 5 - PR bloquée :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>⚠️ Merging is blocked
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>❌ Required status check &quot;test&quot; has not been successful
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>Some checks were not successful
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>❌ Backend Tests / test — Failed
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>This branch has not been approved
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>🔒 Merge blocked
+</code></pre></div>
+<p><strong>Étape 3 (après fix) - PR débloquée :</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>✅ All checks have passed
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>✅ Backend Tests / test — Passed
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>✅ Frontend Tests / test — Passed
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>This branch has no conflicts with the base branch
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>🎉 Ready to merge
+</code></pre></div>
+<h3 id="points-cles-a-comprendre">💡 Points Clés à Comprendre<a class="headerlink" href="#points-cles-a-comprendre" title="Permanent link">&para;</a></h3>
+<p><strong>Q1 : Pourquoi est-ce important ?</strong></p>
+<ul>
+<li><strong>R :</strong> Empêche les bugs d'arriver en production. Si un développeur casse quelque chose, GitHub le force à corriger <strong>avant</strong> de merger.</li>
+</ul>
+<p><strong>Q2 : Est-ce que ça ralentit le développement ?</strong></p>
+<ul>
+<li><strong>R :</strong> Non ! Au contraire, ça évite de perdre du temps à déboguer en production. <em>"Fail fast, fix fast"</em>.</li>
+</ul>
+<p><strong>Q3 : Peut-on contourner cette protection ?</strong></p>
+<ul>
+<li><strong>R :</strong> Oui, les admins du repo peuvent forcer le merge. Mais <strong>c'est une mauvaise pratique</strong> sauf urgence critique.</li>
+</ul>
+<hr />
+<h2 id="exercice-5-workflows-reutilisables">✍️ Exercice 5 : Workflows Réutilisables<a class="headerlink" href="#exercice-5-workflows-reutilisables" title="Permanent link">&para;</a></h2>
+<h3 id="objectif_4">Objectif<a class="headerlink" href="#objectif_4" title="Permanent link">&para;</a></h3>
+<p>Créer un pipeline CI global qui orchestre backend et frontend.</p>
+<h3 id="instructions_3">Instructions<a class="headerlink" href="#instructions_3" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Rendez vos workflows réutilisables :</strong></li>
+</ol>
+<p>Dans <code>backend.yml</code> et <code>frontend.yml</code>, ajoutez <code>pull_request</code> et <code>workflow_call</code> aux déclencheurs :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">  </span><span class="c1"># ✨ Nouveau !</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span><span class="nt">workflow_call</span><span class="p">:</span><span class="w">  </span><span class="c1"># ✨ Nouveau !</span>
+</code></pre></div>
+<ol>
+<li><strong>Créez <code>.github/workflows/ci-pipeline.yml</code> :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI Pipeline</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Backend Tests</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/backend.yml</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="w">  </span><span class="nt">frontend</span><span class="p">:</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Frontend Tests</span>
+<a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="w">    </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.github/workflows/frontend.yml</span>
+<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a>
+<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a><span class="w">  </span><span class="nt">summary</span><span class="p">:</span>
+<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">All Tests Passed</span>
+<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">backend</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">frontend</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🎉 Success</span>
+<a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo &quot;🎉 Tous les tests sont passés !&quot;</span>
+</code></pre></div>
+<ol>
+<li><strong>Poussez et observez :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>git<span class="w"> </span>add<span class="w"> </span>.github/workflows/
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;ci: add reusable workflows and pipeline&quot;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h3 id="resultat">✅ Résultat<a class="headerlink" href="#resultat" title="Permanent link">&para;</a></h3>
+<p>Vous verrez maintenant <strong>3 workflows</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>✅ Backend Tests
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>✅ Frontend Tests
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>✅ CI Pipeline (résumé global)
+</code></pre></div>
+<p>Le job <code>summary</code> attend que backend <strong>ET</strong> frontend soient terminés avant de s'exécuter.</p>
+<hr />
+<h2 id="exercice-6-separer-tests-unitaires-et-e2e">✍️ Exercice 6 : Séparer Tests Unitaires et E2E<a class="headerlink" href="#exercice-6-separer-tests-unitaires-et-e2e" title="Permanent link">&para;</a></h2>
+<h3 id="objectif_5">Objectif<a class="headerlink" href="#objectif_5" title="Permanent link">&para;</a></h3>
+<p>Exécuter les tests rapides (unitaires) sur toutes les branches, mais les tests lents (E2E) seulement sur <code>main</code>.
+Les tests <strong>E2E (end-to-end)</strong> vérifient le fonctionnement complet de l’application comme le ferait un utilisateur réel (du frontend au backend, base de données, API, etc.). Ils sont plus lents que les tests unitaires, c’est pourquoi on ne les exécute que sur la branche <code>main</code>.</p>
+<h3 id="instructions_4">Instructions<a class="headerlink" href="#instructions_4" title="Permanent link">&para;</a></h3>
+<p><strong>Partie 1 : Marquer les tests E2E</strong></p>
+<ol>
+<li><strong>Dans <code>backend/tests/conftest.py</code>, ajoutez :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">pytest_configure</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Enregistre les markers personnalisés&quot;&quot;&quot;</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    <span class="n">config</span><span class="o">.</span><span class="n">addinivalue_line</span><span class="p">(</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>        <span class="s2">&quot;markers&quot;</span><span class="p">,</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>        <span class="s2">&quot;e2e: mark test as end-to-end test (slow)&quot;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>    <span class="p">)</span>
+</code></pre></div>
+<ol>
+<li><strong>Dans <code>backend/tests/test_api.py</code>, créez un test E2E :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">e2e</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_complete_task_lifecycle</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Test E2E : Créer plusieurs tâches et les lister.&quot;&quot;&quot;</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>    <span class="c1"># Créer la première tâche</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Tâche E2E 1&quot;</span><span class="p">,</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Première tâche&quot;</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>    <span class="p">})</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a>    <span class="n">task1_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a>
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a>    <span class="c1"># Créer la deuxième tâche</span>
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a>        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Tâche E2E 2&quot;</span><span class="p">,</span>
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a>        <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Deuxième tâche&quot;</span>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a>    <span class="p">})</span>
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a>    <span class="n">task2_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a>
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a>    <span class="c1"># Lister toutes les tâches</span>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/tasks&quot;</span><span class="p">)</span>
+<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a>    <span class="n">tasks</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a>    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+<a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a>
+<a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a>    <span class="c1"># Vérifier que nos deux tâches sont dans la liste</span>
+<a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a>    <span class="n">task_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">task</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">]</span>
+<a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a>    <span class="k">assert</span> <span class="n">task1_id</span> <span class="ow">in</span> <span class="n">task_ids</span>
+<a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a>    <span class="k">assert</span> <span class="n">task2_id</span> <span class="ow">in</span> <span class="n">task_ids</span>
+</code></pre></div>
+<ol>
+<li><strong>Testez localement les différentes commandes :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">cd</span><span class="w"> </span>backend
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="c1"># Tests unitaires seulement</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not e2e&quot;</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="c1"># Tests E2E seulement</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;e2e&quot;</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="c1"># Tous les tests</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v
+</code></pre></div>
+<p><strong>Partie 2 : Modifier le workflow backend pour séparer les tests</strong></p>
+<ol>
+<li><strong>Modifiez <code>.github/workflows/backend.yml</code> pour ajouter 2 jobs au lieu d'un seul :</strong></li>
+</ol>
+<p>Remplacez le contenu complet par :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Backend Tests</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">  </span><span class="nt">workflow_call</span><span class="p">:</span>
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="w">  </span><span class="nt">unit-tests</span><span class="p">:</span>
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit Tests</span>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📥 Checkout code</span>
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a>
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🐍 Setup Python 3.11</span>
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a><span class="w">          </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pip&#39;</span>
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a>
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📦 Install UV</span>
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install uv</span>
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a>
+<a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📚 Install dependencies</span>
+<a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-35-30" name="__codelineno-35-30" href="#__codelineno-35-30"></a><span class="w">          </span><span class="no">cd backend</span>
+<a id="__codelineno-35-31" name="__codelineno-35-31" href="#__codelineno-35-31"></a><span class="w">          </span><span class="no">uv sync</span>
+<a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a>
+<a id="__codelineno-35-33" name="__codelineno-35-33" href="#__codelineno-35-33"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🧪 Run unit tests only</span>
+<a id="__codelineno-35-34" name="__codelineno-35-34" href="#__codelineno-35-34"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-35-35" name="__codelineno-35-35" href="#__codelineno-35-35"></a><span class="w">          </span><span class="no">cd backend</span>
+<a id="__codelineno-35-36" name="__codelineno-35-36" href="#__codelineno-35-36"></a><span class="w">          </span><span class="no">uv run pytest -v -m &quot;not e2e&quot;</span>
+<a id="__codelineno-35-37" name="__codelineno-35-37" href="#__codelineno-35-37"></a>
+<a id="__codelineno-35-38" name="__codelineno-35-38" href="#__codelineno-35-38"></a><span class="w">  </span><span class="nt">e2e-tests</span><span class="p">:</span>
+<a id="__codelineno-35-39" name="__codelineno-35-39" href="#__codelineno-35-39"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">E2E Tests</span>
+<a id="__codelineno-35-40" name="__codelineno-35-40" href="#__codelineno-35-40"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-35-41" name="__codelineno-35-41" href="#__codelineno-35-41"></a><span class="w">    </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span><span class="w">  </span><span class="c1"># ✨ Seulement sur main !</span>
+<a id="__codelineno-35-42" name="__codelineno-35-42" href="#__codelineno-35-42"></a><span class="w">    </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unit-tests</span>
+<a id="__codelineno-35-43" name="__codelineno-35-43" href="#__codelineno-35-43"></a>
+<a id="__codelineno-35-44" name="__codelineno-35-44" href="#__codelineno-35-44"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-35-45" name="__codelineno-35-45" href="#__codelineno-35-45"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📥 Checkout code</span>
+<a id="__codelineno-35-46" name="__codelineno-35-46" href="#__codelineno-35-46"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-35-47" name="__codelineno-35-47" href="#__codelineno-35-47"></a>
+<a id="__codelineno-35-48" name="__codelineno-35-48" href="#__codelineno-35-48"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🐍 Setup Python 3.11</span>
+<a id="__codelineno-35-49" name="__codelineno-35-49" href="#__codelineno-35-49"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<a id="__codelineno-35-50" name="__codelineno-35-50" href="#__codelineno-35-50"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-35-51" name="__codelineno-35-51" href="#__codelineno-35-51"></a><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span>
+<a id="__codelineno-35-52" name="__codelineno-35-52" href="#__codelineno-35-52"></a><span class="w">          </span><span class="nt">cache</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;pip&#39;</span>
+<a id="__codelineno-35-53" name="__codelineno-35-53" href="#__codelineno-35-53"></a>
+<a id="__codelineno-35-54" name="__codelineno-35-54" href="#__codelineno-35-54"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📦 Install UV</span>
+<a id="__codelineno-35-55" name="__codelineno-35-55" href="#__codelineno-35-55"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install uv</span>
+<a id="__codelineno-35-56" name="__codelineno-35-56" href="#__codelineno-35-56"></a>
+<a id="__codelineno-35-57" name="__codelineno-35-57" href="#__codelineno-35-57"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📚 Install dependencies</span>
+<a id="__codelineno-35-58" name="__codelineno-35-58" href="#__codelineno-35-58"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-35-59" name="__codelineno-35-59" href="#__codelineno-35-59"></a><span class="w">          </span><span class="no">cd backend</span>
+<a id="__codelineno-35-60" name="__codelineno-35-60" href="#__codelineno-35-60"></a><span class="w">          </span><span class="no">uv sync</span>
+<a id="__codelineno-35-61" name="__codelineno-35-61" href="#__codelineno-35-61"></a>
+<a id="__codelineno-35-62" name="__codelineno-35-62" href="#__codelineno-35-62"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🧪 Run E2E tests only</span>
+<a id="__codelineno-35-63" name="__codelineno-35-63" href="#__codelineno-35-63"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-35-64" name="__codelineno-35-64" href="#__codelineno-35-64"></a><span class="w">          </span><span class="no">cd backend</span>
+<a id="__codelineno-35-65" name="__codelineno-35-65" href="#__codelineno-35-65"></a><span class="w">          </span><span class="no">uv run pytest -v -m &quot;e2e&quot;</span>
+</code></pre></div>
+<p><strong>Changements clés :</strong>
+   - <strong>2 jobs</strong> au lieu d'un seul : <code>unit-tests</code> et <code>e2e-tests</code>
+   - <code>if: github.ref == 'refs/heads/main'</code> → Le job E2E ne tourne que sur main
+   - <code>needs: unit-tests</code> → Les E2E attendent que les tests unitaires passent</p>
+<ol>
+<li><strong>Testez le comportement différent entre PR et main :</strong></li>
+</ol>
+<p><strong>Étape 1 : Tester sur main d'abord</strong></p>
+<p>Poussez vos changements sur main :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>git<span class="w"> </span>add<span class="w"> </span>.
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: split unit and E2E tests&quot;</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<p>→ Sur GitHub, allez dans <strong>Actions</strong> → Cliquez sur le workflow <strong>"Backend Tests"</strong> → Vous devriez voir <strong>les deux jobs : "Unit Tests" ET "E2E Tests"</strong> s'exécuter.</p>
+<p><strong>Étape 2 : Tester sur une PR</strong></p>
+<p>Créez une branche et une PR pour voir que les E2E ne tournent pas :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># Assurez-vous d&#39;être sur main et à jour</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>main
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="c1"># Créez une nouvelle branche</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>test/pr-no-e2e
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# Test PR&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>git<span class="w"> </span>add<span class="w"> </span>.
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;test: verify E2E don&#39;t run on PR&quot;</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>test/pr-no-e2e
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--title<span class="w"> </span><span class="s2">&quot;Test E2E sur PR&quot;</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">&quot;Vérifier que E2E ne tourne pas sur PR&quot;</span>
+</code></pre></div>
+<p>→ Sur GitHub, allez dans <strong>Actions</strong> → Cliquez sur le workflow <strong>"Backend Tests"</strong> de la PR → Vous devriez voir <strong>seulement le job "Unit Tests"</strong> s'exécuter (pas de E2E Tests).</p>
+<h3 id="resultat-attendu_2">✅ Résultat attendu<a class="headerlink" href="#resultat-attendu_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Sur PR</strong> : Seulement le job <strong>"Unit Tests"</strong> s'exécute ⚡ (rapide)</li>
+<li><strong>Sur main</strong> : Les jobs <strong>"Unit Tests" ET "E2E Tests"</strong> s'exécutent 🐢 (plus lent mais complet)</li>
+</ul>
+<hr />
+<h2 id="exercice-7-badges-de-status">✍️ Exercice 7 : Badges de Status<a class="headerlink" href="#exercice-7-badges-de-status" title="Permanent link">&para;</a></h2>
+<h3 id="objectif_6">Objectif<a class="headerlink" href="#objectif_6" title="Permanent link">&para;</a></h3>
+<p>Afficher le statut des workflows dans votre README.</p>
+<h3 id="instructions_5">Instructions<a class="headerlink" href="#instructions_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Modifiez <code>README.md</code> et ajoutez au début :</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="gh"># TaskFlow API</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>![<span class="nt">Backend Tests</span>](<span class="na">https://github.com/VOTRE_NOM/VOTRE_REPO/workflows/Backend%20Tests/badge.svg</span>)
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>![<span class="nt">Frontend Tests</span>](<span class="na">https://github.com/VOTRE_NOM/VOTRE_REPO/workflows/Frontend%20Tests/badge.svg</span>)
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>![<span class="nt">CI Pipeline</span>](<span class="na">https://github.com/VOTRE_NOM/VOTRE_REPO/workflows/CI%20Pipeline/badge.svg</span>)
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Remplacez :</strong></p>
+</li>
+<li><code>VOTRE_NOM</code> → Votre username GitHub</li>
+<li>
+<p><code>VOTRE_REPO</code> → Nom de votre repo</p>
+</li>
+<li>
+<p><strong>Poussez :</strong></p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>git<span class="w"> </span>add<span class="w"> </span>README.md
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;docs: add CI badges&quot;</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h3 id="resultat_1">✅ Résultat<a class="headerlink" href="#resultat_1" title="Permanent link">&para;</a></h3>
+<p>Sur GitHub, vous verrez des badges qui se mettent à jour automatiquement :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>✅ Backend Tests  ✅ Frontend Tests  ✅ CI Pipeline
+</code></pre></div>
+<hr />
+<h2 id="recapitulatif">📋 Récapitulatif<a class="headerlink" href="#recapitulatif" title="Permanent link">&para;</a></h2>
+<p>Félicitations ! Vous avez maintenant :</p>
+<p>✅ <strong>Exercice 1</strong> : Workflow backend automatisé (avec cache pip automatique)
+✅ <strong>Exercice 2</strong> : Workflow frontend automatisé (avec cache npm automatique)
+✅ <strong>Exercice 3</strong> : Compétences en débogage de workflows
+✅ <strong>Exercice 4</strong> : Protection de branches pour empêcher les bugs d'arriver en production
+✅ <strong>Exercice 5</strong> : Pipeline CI global avec workflows réutilisables
+✅ <strong>Exercice 6</strong> : Séparation tests unitaires / E2E
+✅ <strong>Exercice 7</strong> : Badges de status dans le README</p>
+<h3 id="competences-acquises">🎯 Compétences Acquises<a class="headerlink" href="#competences-acquises" title="Permanent link">&para;</a></h3>
+<p>Vous savez maintenant :</p>
+<ul>
+<li>✅ Créer et configurer des workflows GitHub Actions</li>
+<li>✅ Utiliser le cache automatique pour accélérer les builds</li>
+<li>✅ Déboguer des workflows qui échouent</li>
+<li>✅ Protéger la branche <code>main</code> contre les bugs</li>
+<li>✅ Créer des Pull Requests et comprendre le processus de review</li>
+<li>✅ Organiser des pipelines CI complexes</li>
+<li>✅ Séparer tests rapides et tests lents</li>
+<li>✅ Afficher le statut de vos workflows avec des badges</li>
+</ul>
+<p><strong>Ces compétences sont directement utilisables en entreprise !</strong> 🚀</p>
+<p><strong>Temps total estimé :</strong> 4-5 heures</p>
+<hr />
+<h2 id="erreurs-frequentes">🐛 Erreurs Fréquentes<a class="headerlink" href="#erreurs-frequentes" title="Permanent link">&para;</a></h2>
+<h3 id="uv-command-not-found">❌ <code>uv: command not found</code><a class="headerlink" href="#uv-command-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Cause :</strong> UV n'est pas installé ou pas dans le PATH
+<strong>Solution :</strong> Vérifiez que vous avez bien <code>pip install uv</code> dans votre workflow</p>
+<h3 id="tests-qui-passent-localement-mais-echouent-sur-github">❌ Tests qui passent localement mais échouent sur GitHub<a class="headerlink" href="#tests-qui-passent-localement-mais-echouent-sur-github" title="Permanent link">&para;</a></h3>
+<p><strong>Causes possibles :</strong></p>
+<ol>
+<li>Variable d'environnement manquante</li>
+<li>Dépendance système manquante</li>
+<li>Timezone différente</li>
+<li>Version de Python/Node différente</li>
+</ol>
+<p><strong>Déboguer :</strong> Reproduisez exactement les mêmes commandes localement avec la même version</p>
+<h3 id="required-status-check-has-not-been-successful">❌ "Required status check has not been successful"<a class="headerlink" href="#required-status-check-has-not-been-successful" title="Permanent link">&para;</a></h3>
+<p><strong>Cause :</strong> Vous avez activé la protection de branche mais les tests échouent
+<strong>Solution :</strong> C'est normal ! Corrigez vos tests sur la branche, poussez à nouveau, et le merge se débloquera</p>
+<h3 id="cache-qui-ne-se-restaure-pas">❌ Cache qui ne se restaure pas<a class="headerlink" href="#cache-qui-ne-se-restaure-pas" title="Permanent link">&para;</a></h3>
+<p><strong>Cause :</strong> Le cache pip/npm automatique ne fonctionne que si les fichiers de dépendances (<code>requirements.txt</code>, <code>package-lock.json</code>, etc.) n'ont pas changé
+<strong>Solution :</strong> C'est normal si vous avez modifié vos dépendances. Le cache se reconstruira automatiquement</p>
+<hr />
+<h2 id="bonus-workflow-java-optionnel">🎁 BONUS : Workflow Java (Optionnel)<a class="headerlink" href="#bonus-workflow-java-optionnel" title="Permanent link">&para;</a></h2>
+<p><strong>Pour les étudiants qui ont fait les exercices Java du TP 1.</strong></p>
+<h3 id="objectif_7">Objectif<a class="headerlink" href="#objectif_7" title="Permanent link">&para;</a></h3>
+<p>Tester automatiquement les 3 projets Java (calculator, string-utils, bank-account).</p>
+<h3 id="instructions_6">Instructions<a class="headerlink" href="#instructions_6" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Créez <code>.github/workflows/java.yml</code> :</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Java Tests (Optional)</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;java-exercises/**&#39;</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;java-exercises/**&#39;</span>
+<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span>
+<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a>
+<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test Java Exercises</span>
+<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a>
+<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📥 Checkout code</span>
+<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a>
+<a id="__codelineno-41-23" name="__codelineno-41-23" href="#__codelineno-41-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">☕ Setup Java</span>
+<a id="__codelineno-41-24" name="__codelineno-41-24" href="#__codelineno-41-24"></a><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-java@v4</span>
+<a id="__codelineno-41-25" name="__codelineno-41-25" href="#__codelineno-41-25"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-41-26" name="__codelineno-41-26" href="#__codelineno-41-26"></a><span class="w">          </span><span class="nt">distribution</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;temurin&#39;</span>
+<a id="__codelineno-41-27" name="__codelineno-41-27" href="#__codelineno-41-27"></a><span class="w">          </span><span class="nt">java-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;17&#39;</span>
+<a id="__codelineno-41-28" name="__codelineno-41-28" href="#__codelineno-41-28"></a>
+<a id="__codelineno-41-29" name="__codelineno-41-29" href="#__codelineno-41-29"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🧮 Test Calculator</span>
+<a id="__codelineno-41-30" name="__codelineno-41-30" href="#__codelineno-41-30"></a><span class="w">        </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java-exercises/calculator</span>
+<a id="__codelineno-41-31" name="__codelineno-41-31" href="#__codelineno-41-31"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-41-32" name="__codelineno-41-32" href="#__codelineno-41-32"></a><span class="w">          </span><span class="no">javac -cp .:../lib/junit-4.13.2.jar:../lib/hamcrest-core-1.3.jar *.java</span>
+<a id="__codelineno-41-33" name="__codelineno-41-33" href="#__codelineno-41-33"></a><span class="w">          </span><span class="no">java -cp .:../lib/junit-4.13.2.jar:../lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore CalculatorTest</span>
+<a id="__codelineno-41-34" name="__codelineno-41-34" href="#__codelineno-41-34"></a>
+<a id="__codelineno-41-35" name="__codelineno-41-35" href="#__codelineno-41-35"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">📝 Test String Utils</span>
+<a id="__codelineno-41-36" name="__codelineno-41-36" href="#__codelineno-41-36"></a><span class="w">        </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java-exercises/string-utils</span>
+<a id="__codelineno-41-37" name="__codelineno-41-37" href="#__codelineno-41-37"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-41-38" name="__codelineno-41-38" href="#__codelineno-41-38"></a><span class="w">          </span><span class="no">javac -cp .:../lib/junit-4.13.2.jar:../lib/hamcrest-core-1.3.jar *.java</span>
+<a id="__codelineno-41-39" name="__codelineno-41-39" href="#__codelineno-41-39"></a><span class="w">          </span><span class="no">java -cp .:../lib/junit-4.13.2.jar:../lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore StringUtilsTest</span>
+<a id="__codelineno-41-40" name="__codelineno-41-40" href="#__codelineno-41-40"></a>
+<a id="__codelineno-41-41" name="__codelineno-41-41" href="#__codelineno-41-41"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">🏦 Test Bank Account</span>
+<a id="__codelineno-41-42" name="__codelineno-41-42" href="#__codelineno-41-42"></a><span class="w">        </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java-exercises/bank-account</span>
+<a id="__codelineno-41-43" name="__codelineno-41-43" href="#__codelineno-41-43"></a><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-41-44" name="__codelineno-41-44" href="#__codelineno-41-44"></a><span class="w">          </span><span class="no">javac -cp .:../lib/junit-4.13.2.jar:../lib/hamcrest-core-1.3.jar *.java</span>
+<a id="__codelineno-41-45" name="__codelineno-41-45" href="#__codelineno-41-45"></a><span class="w">          </span><span class="no">java -cp .:../lib/junit-4.13.2.jar:../lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore BankAccountTest</span>
+</code></pre></div>
+<h3 id="nouveaux-concepts">Nouveaux concepts<a class="headerlink" href="#nouveaux-concepts" title="Permanent link">&para;</a></h3>
+<p><strong><code>paths:</code> - Déclenchement conditionnel</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nt">on</span><span class="p">:</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;java-exercises/**&#39;</span>
+</code></pre></div>
+<p>Le workflow ne s'exécute que si vous modifiez des fichiers Java.</p>
+<p><strong><code>workflow_dispatch:</code> - Lancement manuel</strong>
+Vous pouvez lancer le workflow manuellement depuis l'onglet Actions.</p>
+<p><strong><code>working-directory:</code> - Répertoire de travail</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test Calculator</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">  </span><span class="nt">working-directory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java-exercises/calculator</span>
+</code></pre></div>
+<p>Plus propre que d'utiliser <code>cd</code> dans chaque commande.</p>
+<h3 id="test">Test<a class="headerlink" href="#test" title="Permanent link">&para;</a></h3>
+<p><strong>Option 1 : Modifier un fichier Java</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;// Test CI&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>java-exercises/calculator/Calculator.java
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>git<span class="w"> </span>add<span class="w"> </span>java-exercises/
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;test: trigger Java workflow&quot;</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>git<span class="w"> </span>push
+</code></pre></div>
+<p><strong>Option 2 : Lancement manuel</strong></p>
+<ol>
+<li>Allez dans "Actions" → "Java Tests (Optional)"</li>
+<li>Cliquez sur "Run workflow"</li>
+<li>Sélectionnez "main" et cliquez "Run workflow"</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.top", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
