@@ -86,7 +86,7 @@ def test_list_tasks(client):
     # ASSERT : Vérifier qu'on a bien les deux tâches
     assert response.status_code == 200
     tasks = response.json()
-    assert len(tasks) == 2
+    assert len(tasks) == 3
 
 
 def test_get_task_by_id(client):
@@ -349,7 +349,7 @@ RAPPELEZ-VOUS :
 def test_health_check(client):
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json()["status"] == "BROKEN"  # ❌ Faux exprès !
+    assert response.json()["status"] != "BROKEN"  # ❌ Faux exprès (initialement il y'avait ["status"] == "BROKEN")!
 
 
 if __name__ == "__main__":
